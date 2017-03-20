@@ -1,0 +1,1 @@
+export { ReactionComponent } from './reaction.component';

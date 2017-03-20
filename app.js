@@ -8,18 +8,16 @@ var apiRoutes = require('./apiRoutes');
 var port = 3005;
 var app = express();
 
-var swaggerDefinition = {
-  info: {
-    title: 'IOT API',
-    version: '1.0.0',
-    description: 'Demonstrating IOT',
-  },
-  host: 'localhost:'+port,
-  basePath: '/',
-};
-
 var options = {
-  swaggerDefinition: swaggerDefinition,
+  swaggerDefinition: {
+    info: {
+      title: 'IOT API',
+      version: '1.0.0',
+      description: 'Demonstrating IOT',
+    },
+    host: 'localhost:'+port,
+    basePath: '/',
+  },
   apis: ['./apiRoutes/*.js'],
 };
 
