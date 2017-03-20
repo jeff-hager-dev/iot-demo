@@ -1,6 +1,6 @@
 import { NgModule }      from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import {ChatComponent} from './chat/chat.component';
+import {StadiumSeatsComponent} from './stadiumSeats/stadiumSeats.component';
 import { AppComponent }  from './app.component';
 import {FormsModule} from '@angular/forms';
 
@@ -11,7 +11,7 @@ import {FormsModule} from '@angular/forms';
   ],
   declarations: [
     AppComponent,
-    ChatComponent,
+    StadiumSeatsComponent,
   ],
   bootstrap: [ AppComponent ]
 })

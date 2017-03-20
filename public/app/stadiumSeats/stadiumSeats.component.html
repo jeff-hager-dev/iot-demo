@@ -1,0 +1,8 @@
+<span *ngFor="let user of users">
+    <img *ngIf="!user.name" src="../images/Empty.png">
+    <img *ngIf="user.name && user.isStanding && user.gender == 'M'" src="../images/Standing_M.png">
+    <img *ngIf="user.name && !user.isStanding && user.gender == 'M'" src="../images/Sitting_M.png">
+    <img *ngIf="user.name && user.isStanding && user.gender == 'F'" src="../images/Standing_F.png">
+    <img *ngIf="user.name && !user.isStanding && user.gender == 'F'" src="../images/Sitting_F.png">
+</span>
+<input [(ngModel)]="message"  /><button (click)="sendMessage()">Send</button>

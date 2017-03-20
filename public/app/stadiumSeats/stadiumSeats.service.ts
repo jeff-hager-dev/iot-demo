@@ -2,7 +2,7 @@ import { Subject } from 'rxjs/Subject';
 import { Observable } from 'rxjs/Observable';
 import * as io from 'socket.io-client';
 
-export class ChatService {
+export class StadiumSeatsService {
     private url = 'http://localhost:3005';
     private socket: any;
 

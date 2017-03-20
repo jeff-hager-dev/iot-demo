@@ -1,14 +1,14 @@
 "use strict";
 var Observable_1 = require('rxjs/Observable');
 var io = require('socket.io-client');
-var ChatService = (function () {
-    function ChatService() {
+var StadiumSeatsService = (function () {
+    function StadiumSeatsService() {
         this.url = 'http://localhost:3005';
     }
-    ChatService.prototype.sendMessage = function (message) {
+    StadiumSeatsService.prototype.sendMessage = function (message) {
         this.socket.emit('add-message', message);
     };
-    ChatService.prototype.getMessages = function () {
+    StadiumSeatsService.prototype.getMessages = function () {
         var _this = this;
         var observable = new Observable_1.Observable(function (observer) {
             _this.socket = io(_this.url);
@@ -21,7 +21,7 @@ var ChatService = (function () {
         });
         return observable;
     };
-    return ChatService;
+    return StadiumSeatsService;
 }());
-exports.ChatService = ChatService;
-//# sourceMappingURL=chat.service.js.map
+exports.StadiumSeatsService = StadiumSeatsService;
+//# sourceMappingURL=stadiumSeats.service.js.map

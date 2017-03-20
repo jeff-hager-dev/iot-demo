@@ -10,7 +10,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('@angular/core');
 var platform_browser_1 = require('@angular/platform-browser');
-var chat_component_1 = require('./chat/chat.component');
+var stadiumSeats_component_1 = require('./stadiumSeats/stadiumSeats.component');
 var app_component_1 = require('./app.component');
 var forms_1 = require('@angular/forms');
 var AppModule = (function () {
@@ -24,7 +24,7 @@ var AppModule = (function () {
             ],
             declarations: [
                 app_component_1.AppComponent,
-                chat_component_1.ChatComponent,
+                stadiumSeats_component_1.StadiumSeatsComponent,
             ],
             bootstrap: [app_component_1.AppComponent]
         }), 

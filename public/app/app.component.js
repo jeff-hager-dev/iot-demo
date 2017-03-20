@@ -11,7 +11,11 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require('@angular/core');
 var AppComponent = (function () {
     function AppComponent() {
+        this.selectedExercise = 1;
     }
+    AppComponent.prototype.setExercise = function (exerciseNumber) {
+        this.selectedExercise = exerciseNumber;
+    };
     AppComponent = __decorate([
         core_1.Component({
             selector: 'client-app',

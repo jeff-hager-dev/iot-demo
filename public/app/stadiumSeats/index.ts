@@ -1,0 +1,1 @@
+export { StadiumSeatsComponent } from './stadiumSeats.component';
