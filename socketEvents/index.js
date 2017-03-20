@@ -13,12 +13,19 @@ module.exports = function(server){
     io.on('connection', function(socket) {
         socket.emit('welcome', { message: 'Welcome!', id: socket.id });
         socket.on('i am client', console.log);
-
-        socketHandler.helloWorld = function(){
-            socket.emit('welcome', { message: 'Hello World', id: socket.id });
-        };
-
     });
+    
+    socketHandler.helloWorld = function(){
+        io.sockets.emit('welcome', { message: 'Hello World' });
+    };
+
+    socketHandler.standing = function(data){
+        io.emit('standing', data);
+    }
+
+    socketHandler.reaction = function(data){
+        io.emit('reaction', data);
+    }
 
     return socketHandler;
 }
