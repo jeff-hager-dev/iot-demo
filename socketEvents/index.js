@@ -1,5 +1,3 @@
-
-
 module.exports = function(server){
     var socketHandler = {};
     var io = require('socket.io')(server);
@@ -19,7 +17,7 @@ module.exports = function(server){
         socketHandler.helloWorld = function(){
             socket.emit('welcome', { message: 'Hello World', id: socket.id });
         };
-        
+
     });
 
     return socketHandler;
