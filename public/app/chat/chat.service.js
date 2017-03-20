@@ -3,7 +3,7 @@ var Observable_1 = require('rxjs/Observable');
 var io = require('socket.io-client');
 var ChatService = (function () {
     function ChatService() {
-        this.url = 'http://localhost:5000';
+        this.url = 'http://localhost:3005';
     }
     ChatService.prototype.sendMessage = function (message) {
         this.socket.emit('add-message', message);
