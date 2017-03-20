@@ -91,6 +91,6 @@ app.use(function(err, req, res, next) {
 
 var server = require('http').createServer(app);
 
-var io = require('./socketEvents')(server);
+var socketHanlder = require('./socketEvents')(server);
 
 server.listen(port);

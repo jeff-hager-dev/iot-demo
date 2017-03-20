@@ -3,7 +3,7 @@ var router = express.Router();
 
 /**
  * @swagger
- * /api/hello:
+ * api/hello:
  *   get:
  *     produces:
  *       - application/json

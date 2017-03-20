@@ -1,7 +1,7 @@
 
 
 module.exports = function(server){
-
+    var socketHanlder = {};
     var io = require('socket.io')(server);
     // Send current time to all connected clients
     function sendTime() {
@@ -18,5 +18,5 @@ module.exports = function(server){
         socket.on('i am client', console.log);
     });
 
-    return io;
+    return socketHanlder;
 }
