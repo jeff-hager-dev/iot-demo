@@ -24,14 +24,24 @@ var options = {
 };
 
 
-// initialize swagger-jsdoc LAUREN WAS HERE
+// initialize swagger-jsdoc
 var swaggerSpec = swaggerJSDoc(options);
 
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'public')));
+<<<<<<< HEAD
 app.use(express.static(path.join(__dirname, 'scripts')));
+=======
+app.use('/node_modules/core-js/client', express.static(__dirname + '/node_modules/core-js/client/'));
+app.use('/node_modules/zone.js/dist', express.static(__dirname + '/node_modules/zone.js/dist/'));
+app.use('/node_modules/systemjs/dist', express.static(__dirname + '/node_modules/systemjs/dist/'));
+app.use('/node_modules/@angular', express.static(__dirname + '/node_modules/@angular/'));
+app.use('/node_modules/rxjs', express.static(__dirname + '/node_modules/rxjs/'));
+app.use('/node_modules/socket.io-client/', express.static(__dirname + '/node_modules/socket.io-client/'));
+app.use('/node_modules/angular-in-memory-web-api/bundles/in-memory-web-api.umd.js', express.static(__dirname + '/node_modules/angular-in-memory-web-api/bundles/in-memory-web-api.umd.js/'));
+>>>>>>> 7d6a732098d59e26042bdccede89c274e1d95b5d
 
 var server = require('http').createServer(app);
 var socketHandler = require('./socketEvents')(server);
