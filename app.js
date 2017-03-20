@@ -100,4 +100,6 @@ app.use(function(err, req, res, next) {
   });
 });
 
-server.listen(port);
+server.listen(port, function(){
+  console.log(app.get('env')+" server listening on "+port);
+});
