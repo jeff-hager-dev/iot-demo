@@ -32,7 +32,10 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', apiRoutes);
+var server = require('http').createServer(app);
+var socketHandler = require('./socketEvents')(server);
+
+app.use('/', apiRoutes(socketHandler));
 
 app.get('/swagger.json', function(req, res) {
   res.setHeader('Content-Type', 'application/json');
@@ -88,9 +91,5 @@ app.use(function(err, req, res, next) {
     message: err.message
   });
 });
-
-var server = require('http').createServer(app);
-
-var socketHanlder = require('./socketEvents')(server);
 
 server.listen(port);
