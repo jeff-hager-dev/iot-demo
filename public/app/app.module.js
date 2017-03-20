@@ -20,11 +20,11 @@ var AppModule = (function () {
         core_1.NgModule({
             imports: [
                 platform_browser_1.BrowserModule,
-                chat_component_1.ChatComponent,
                 forms_1.FormsModule
             ],
             declarations: [
-                app_component_1.AppComponent
+                app_component_1.AppComponent,
+                chat_component_1.ChatComponent,
             ],
             bootstrap: [app_component_1.AppComponent]
         }), 
