@@ -1,0 +1,22 @@
+{
+  "name": "iot-demo",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "dependencies": {
+    "body-parser": "^1.17.1",
+    "express": "^4.15.2",
+    "morgan": "^1.8.1",
+    "swagger-jsdoc": "^1.9.2",
+    "swagger-node-express": "^2.1.3"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "ssh://mobapp1:22/tfs/DefaultCollection/_git/iot-demo"
+  },
+  "author": "",
+  "license": "ISC"
+}
