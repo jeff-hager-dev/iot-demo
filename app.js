@@ -24,7 +24,7 @@ var options = {
 };
 
 
-// initialize swagger-jsdoc LAUREN WAS HERE
+// initialize swagger-jsdoc
 var swaggerSpec = swaggerJSDoc(options);
 
 app.use(logger('dev'));
