@@ -36,6 +36,7 @@ app.use('/node_modules/zone.js/dist', express.static(__dirname + '/node_modules/
 app.use('/node_modules/systemjs/dist', express.static(__dirname + '/node_modules/systemjs/dist/'));
 app.use('/node_modules/@angular', express.static(__dirname + '/node_modules/@angular/'));
 app.use('/node_modules/rxjs', express.static(__dirname + '/node_modules/rxjs/'));
+app.use('/node_modules/socket.io-client/', express.static(__dirname + '/node_modules/socket.io-client/'));
 app.use('/node_modules/angular-in-memory-web-api/bundles/in-memory-web-api.umd.js', express.static(__dirname + '/node_modules/angular-in-memory-web-api/bundles/in-memory-web-api.umd.js/'));
 
 var server = require('http').createServer(app);

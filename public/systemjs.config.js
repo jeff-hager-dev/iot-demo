@@ -2,6 +2,7 @@
  * System configuration for Angular samples
  * Adjust as necessary for your application needs.
  */
+
 (function (global) {
   System.config({
     paths: {
@@ -24,7 +25,8 @@
       '@angular/forms': 'npm:@angular/forms/bundles/forms.umd.js',
 
       // other libraries
-      'rxjs':                      'npm:rxjs',
+      'rxjs': 'npm:rxjs',
+        'socket.io-client' : 'npm:socket.io-client',
       'angular-in-memory-web-api': 'npm:angular-in-memory-web-api/bundles/in-memory-web-api.umd.js'
     },
     // packages tells the System loader how to load when no filename and/or no extension
@@ -34,6 +36,9 @@
       },
       rxjs: {
         defaultExtension: 'js'
+      },
+        'socket.io-client': {
+        main: 'socket.io.js'
       }
     }
   });
