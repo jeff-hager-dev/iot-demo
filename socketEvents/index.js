@@ -9,22 +9,18 @@ module.exports = function(server){
     
     socketHandler.checkin = function(data){
         io.emit('checkin', { message: 'Checked In' });
-        socket.on('Check in', console.log);
     };
 
     socketHandler.setColor = function(data){
         io.emit('setColor', { message: 'Color Set' });
-        socket.on('set color', console.log);
     };
 
     socketHandler.stand = function(data){
         io.emit('stand', data);
-        socket.on('stand', console.log);
     }
 
     socketHandler.reaction = function(data){
         io.emit('reaction', data);
-        socket.on('reaction', console.log);
     }
 
     return socketHandler;

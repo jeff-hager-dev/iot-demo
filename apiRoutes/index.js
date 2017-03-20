@@ -14,7 +14,8 @@ module.exports = function(socketHandler){
      *         description: a greeting
      */
     router.get('/api/checkin', function(req, res){
-        socketHandler.checkin();
+        var data = {};
+        socketHandler.checkin(data);
         res.status(200).json({"message": "checked in"});
     });
 
@@ -29,7 +30,8 @@ module.exports = function(socketHandler){
      *         description: a greeting
      */
     router.get('/api/standing', function(req, res){
-        socketHandler.stand();
+        var data = {};
+        socketHandler.stand(data);
         res.status(200).json({"message": "success"});
     });
 
@@ -44,7 +46,8 @@ module.exports = function(socketHandler){
      *         description: a greeting
      */
     router.get('/api/color', function(req, res){
-        socketHandler.setColor();
+        var data = {};
+        socketHandler.setColor(data);
         res.status(200).json({"message": "success"});
     });
 
@@ -59,7 +62,8 @@ module.exports = function(socketHandler){
      *         description: a greeting
      */
     router.get('/api/reaction', function(req, res){
-        socketHandler.reaction();
+        var data = {};
+        socketHandler.reaction(data);
         res.status(200).json({"message": "success"});
     });
 
