@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy, NgZone } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { StadiumSeatsService }       from './stadiumSeats.service';
 import { CheckinService }       from '../checkin.service';
 
@@ -14,8 +14,7 @@ export class StadiumSeatsComponent implements OnInit, OnDestroy {
     checkinConnection: any;
     count: number = 20;
 
-    constructor(private zone: NgZone,
-                private stadiumSeatsService:StadiumSeatsService, 
+    constructor(private stadiumSeatsService:StadiumSeatsService, 
                 private checkinService: CheckinService) {}
 
     ngOnInit() {
@@ -31,7 +30,7 @@ export class StadiumSeatsComponent implements OnInit, OnDestroy {
     setupChairs() {
         for(let index = 0; index < this.count; index++) {
             this.users.push({
-                number: null,
+                number: (index+1),
                 name: null,
                 gender: null,
                 isStanding: null
@@ -40,29 +39,25 @@ export class StadiumSeatsComponent implements OnInit, OnDestroy {
     }
     updateStanding() {
         this.standConnection = this.stadiumSeatsService.getMessages().subscribe((data: any) => {
-            console.log('User updating standing', data);
-            this.zone.run(() => {
-                this.users.map((user: any)=>{
-                    if(user.number == data.number){
-                            user.isStanding = (data.isStanding == "true");
-                    }
-                });
-            });
+            console.log('User standing update', data);
+            for(var user of this.users) {
+                if(user.number == (data.number||-1)){
+                        user.isStanding = (data.isStanding == "true");
+                }
+            }
         });
     }
 
     checkinUsers(){
         this.checkinConnection = this.checkinService.getUsers().subscribe((data: any) => {
             console.log("User Checkin", data);
-            this.zone.run(() => {
-                this.users.map((user: any)=>{
-                if(user.number == data.number){
+            for(var user of this.users) {
+                if(user.number == (data.number||-1)){
                     user.gender = data.gender;
                     user.name = data.name;
                     user.isStanding = false;
                 }
-                });
-            });
+            }
         });
     }
 }

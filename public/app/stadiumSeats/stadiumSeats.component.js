@@ -12,8 +12,7 @@ var core_1 = require('@angular/core');
 var stadiumSeats_service_1 = require('./stadiumSeats.service');
 var checkin_service_1 = require('../checkin.service');
 var StadiumSeatsComponent = (function () {
-    function StadiumSeatsComponent(zone, stadiumSeatsService, checkinService) {
-        this.zone = zone;
+    function StadiumSeatsComponent(stadiumSeatsService, checkinService) {
         this.stadiumSeatsService = stadiumSeatsService;
         this.checkinService = checkinService;
         this.users = [];
@@ -31,7 +30,7 @@ var StadiumSeatsComponent = (function () {
     StadiumSeatsComponent.prototype.setupChairs = function () {
         for (var index = 0; index < this.count; index++) {
             this.users.push({
-                number: null,
+                number: (index + 1),
                 name: null,
                 gender: null,
                 isStanding: null
@@ -41,29 +40,27 @@ var StadiumSeatsComponent = (function () {
     StadiumSeatsComponent.prototype.updateStanding = function () {
         var _this = this;
         this.standConnection = this.stadiumSeatsService.getMessages().subscribe(function (data) {
-            console.log('User updating standing', data);
-            _this.zone.run(function () {
-                _this.users.map(function (user) {
-                    if (user.number == data.number) {
-                        user.isStanding = (data.isStanding == "true");
-                    }
-                });
-            });
+            console.log('User standing update', data);
+            for (var _i = 0, _a = _this.users; _i < _a.length; _i++) {
+                var user = _a[_i];
+                if (user.number == (data.number || -1)) {
+                    user.isStanding = (data.isStanding == "true");
+                }
+            }
         });
     };
     StadiumSeatsComponent.prototype.checkinUsers = function () {
         var _this = this;
         this.checkinConnection = this.checkinService.getUsers().subscribe(function (data) {
             console.log("User Checkin", data);
-            _this.zone.run(function () {
-                _this.users.map(function (user) {
-                    if (user.number == data.number) {
-                        user.gender = data.gender;
-                        user.name = data.name;
-                        user.isStanding = false;
-                    }
-                });
-            });
+            for (var _i = 0, _a = _this.users; _i < _a.length; _i++) {
+                var user = _a[_i];
+                if (user.number == (data.number || -1)) {
+                    user.gender = data.gender;
+                    user.name = data.name;
+                    user.isStanding = false;
+                }
+            }
         });
     };
     StadiumSeatsComponent = __decorate([
@@ -73,7 +70,7 @@ var StadiumSeatsComponent = (function () {
             styleUrls: ['./app/stadiumSeats/stadiumSeats.component.css'],
             providers: [stadiumSeats_service_1.StadiumSeatsService, checkin_service_1.CheckinService]
         }), 
-        __metadata('design:paramtypes', [core_1.NgZone, stadiumSeats_service_1.StadiumSeatsService, checkin_service_1.CheckinService])
+        __metadata('design:paramtypes', [stadiumSeats_service_1.StadiumSeatsService, checkin_service_1.CheckinService])
     ], StadiumSeatsComponent);
     return StadiumSeatsComponent;
 }());
