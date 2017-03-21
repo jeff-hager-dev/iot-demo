@@ -11,13 +11,13 @@
  *         required: true
  *         type: string
  *       - name: number
- *         description: name of user.
+ *         description: device number.
  *         in: path
  *         required: true
  *         type: number
  *         format: int
  *       - name: gender
- *         description: name of user.
+ *         description: gender of avatar to be used.
  *         in: path
  *         required: true
  *         type: string
