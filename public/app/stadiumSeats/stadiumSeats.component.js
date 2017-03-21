@@ -10,9 +10,11 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('@angular/core');
 var stadiumSeats_service_1 = require('./stadiumSeats.service');
+var checkin_service_1 = require('../checkin.service');
 var StadiumSeatsComponent = (function () {
-    function StadiumSeatsComponent(stadiumSeatsService) {
+    function StadiumSeatsComponent(stadiumSeatsService, checkinService) {
         this.stadiumSeatsService = stadiumSeatsService;
+        this.checkinService = checkinService;
         this.users = [];
         this.count = 20;
     }
@@ -38,22 +40,26 @@ var StadiumSeatsComponent = (function () {
     };
     StadiumSeatsComponent.prototype.ngOnInit = function () {
         var _this = this;
-        this.connection = this.stadiumSeatsService.getMessages().subscribe(function (user) {
+        this.standConnection = this.stadiumSeatsService.getMessages().subscribe(function (user) {
+            _this.users.push(user);
+        });
+        this.checkinConnection = this.checkinService.getUsers().subscribe(function (user) {
             _this.users.push(user);
         });
         this.setUsers();
     };
     StadiumSeatsComponent.prototype.ngOnDestroy = function () {
-        this.connection.unsubscribe();
+        this.standConnection.unsubscribe();
+        this.checkinConnection.unsubscribe();
     };
     StadiumSeatsComponent = __decorate([
         core_1.Component({
             selector: 'stadium-seat-component',
             templateUrl: './app/stadiumSeats/stadiumSeats.component.html',
             styleUrls: ['./app/stadiumSeats/stadiumSeats.component.css'],
-            providers: [stadiumSeats_service_1.StadiumSeatsService]
+            providers: [stadiumSeats_service_1.StadiumSeatsService, checkin_service_1.CheckinService]
         }), 
-        __metadata('design:paramtypes', [stadiumSeats_service_1.StadiumSeatsService])
+        __metadata('design:paramtypes', [stadiumSeats_service_1.StadiumSeatsService, checkin_service_1.CheckinService])
     ], StadiumSeatsComponent);
     return StadiumSeatsComponent;
 }());

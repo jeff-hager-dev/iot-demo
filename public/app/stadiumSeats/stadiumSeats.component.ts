@@ -1,18 +1,20 @@
 import { Component, OnInit,OnDestroy } from '@angular/core';
 import { StadiumSeatsService }       from './stadiumSeats.service';
+import { CheckinService }       from '../checkin.service';
 
 @Component({
     selector: 'stadium-seat-component',
     templateUrl: './app/stadiumSeats/stadiumSeats.component.html',
     styleUrls: ['./app/stadiumSeats/stadiumSeats.component.css'],
-    providers: [StadiumSeatsService]
+    providers: [StadiumSeatsService, CheckinService]
 })
 export class StadiumSeatsComponent implements OnInit, OnDestroy {
     users: any[] = [];
-    connection: any;
+    standConnection: any;
+    checkinConnection: any;
     count: number = 20;
 
-    constructor(private stadiumSeatsService:StadiumSeatsService) {}
+    constructor(private stadiumSeatsService:StadiumSeatsService, private checkinService: CheckinService) {}
 
     setUsers() {
         for(let index = 0; index < this.count; index++) {
@@ -36,13 +38,19 @@ export class StadiumSeatsComponent implements OnInit, OnDestroy {
     }
 
     ngOnInit() {
-        this.connection = this.stadiumSeatsService.getMessages().subscribe(user => {
+        this.standConnection = this.stadiumSeatsService.getMessages().subscribe(user => {
             this.users.push(user);
         });
+
+        this.checkinConnection = this.checkinService.getUsers().subscribe(user => {
+            this.users.push(user);
+        });
+
         this.setUsers();
     }
 
     ngOnDestroy() {
-        this.connection.unsubscribe();
+        this.standConnection.unsubscribe();
+        this.checkinConnection.unsubscribe();
     }
 }

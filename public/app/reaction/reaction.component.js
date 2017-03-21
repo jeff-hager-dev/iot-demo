@@ -39,6 +39,7 @@ var ReactionComponent = (function () {
         var _this = this;
         this.connection = this.reactionService.getReactions().subscribe(function (reaction) {
             _this.reactions.push(reaction);
+            console.log(reaction);
         });
     };
     ReactionComponent.prototype.ngOnDestroy = function () {

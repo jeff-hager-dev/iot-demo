@@ -12,7 +12,7 @@ var StadiumSeatsService = (function () {
         var _this = this;
         var observable = new Observable_1.Observable(function (observer) {
             _this.socket = io(_this.url);
-            _this.socket.on('stand', function (data) {
+            _this.socket.on('message', function (data) {
                 observer.next(data);
             });
             return function () {
