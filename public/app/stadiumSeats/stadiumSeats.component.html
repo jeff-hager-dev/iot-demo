@@ -1,4 +1,4 @@
-<span *ngFor="let user of users">
+<span  *ngFor="let user of users">
     <img *ngIf="!user.name" src="../images/Empty.png">
     <img *ngIf="user.name && user.isStanding && user.gender == 'M'" src="../images/Standing_M.png">
     <img *ngIf="user.name && !user.isStanding && user.gender == 'M'" src="../images/Sitting_M.png">

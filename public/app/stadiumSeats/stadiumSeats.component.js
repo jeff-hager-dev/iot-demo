@@ -12,45 +12,59 @@ var core_1 = require('@angular/core');
 var stadiumSeats_service_1 = require('./stadiumSeats.service');
 var checkin_service_1 = require('../checkin.service');
 var StadiumSeatsComponent = (function () {
-    function StadiumSeatsComponent(stadiumSeatsService, checkinService) {
+    function StadiumSeatsComponent(zone, stadiumSeatsService, checkinService) {
+        this.zone = zone;
         this.stadiumSeatsService = stadiumSeatsService;
         this.checkinService = checkinService;
         this.users = [];
         this.count = 20;
     }
-    StadiumSeatsComponent.prototype.setUsers = function () {
-        for (var index = 0; index < this.count; index++) {
-            var user = {
-                id: 1,
-                name: "Lauren",
-                gender: "F",
-                isStanding: true
-            };
-            if (index == 1 || index == 2) {
-                user.name = null;
-            }
-            if (index == 3 || index == 4 || index == 7) {
-                user.isStanding = false;
-            }
-            if (index == 3 || index == 6 || index == 5) {
-                user.gender = "M";
-            }
-            this.users.push(user);
-        }
-    };
     StadiumSeatsComponent.prototype.ngOnInit = function () {
-        var _this = this;
-        this.standConnection = this.stadiumSeatsService.getMessages().subscribe(function (user) {
-            _this.users.push(user);
-        });
-        this.checkinConnection = this.checkinService.getUsers().subscribe(function (user) {
-            _this.users.push(user);
-        });
-        this.setUsers();
+        this.setupChairs();
+        this.checkinUsers();
+        this.updateStanding();
     };
     StadiumSeatsComponent.prototype.ngOnDestroy = function () {
         this.standConnection.unsubscribe();
         this.checkinConnection.unsubscribe();
+    };
+    StadiumSeatsComponent.prototype.setupChairs = function () {
+        for (var index = 0; index < this.count; index++) {
+            this.users.push({
+                number: null,
+                name: null,
+                gender: null,
+                isStanding: null
+            });
+        }
+    };
+    StadiumSeatsComponent.prototype.updateStanding = function () {
+        var _this = this;
+        this.standConnection = this.stadiumSeatsService.getMessages().subscribe(function (data) {
+            console.log('User updating standing', data);
+            _this.zone.run(function () {
+                _this.users.map(function (user) {
+                    if (user.number == data.number) {
+                        user.isStanding = (data.isStanding == "true");
+                    }
+                });
+            });
+        });
+    };
+    StadiumSeatsComponent.prototype.checkinUsers = function () {
+        var _this = this;
+        this.checkinConnection = this.checkinService.getUsers().subscribe(function (data) {
+            console.log("User Checkin", data);
+            _this.zone.run(function () {
+                _this.users.map(function (user) {
+                    if (user.number == data.number) {
+                        user.gender = data.gender;
+                        user.name = data.name;
+                        user.isStanding = false;
+                    }
+                });
+            });
+        });
     };
     StadiumSeatsComponent = __decorate([
         core_1.Component({
@@ -59,7 +73,7 @@ var StadiumSeatsComponent = (function () {
             styleUrls: ['./app/stadiumSeats/stadiumSeats.component.css'],
             providers: [stadiumSeats_service_1.StadiumSeatsService, checkin_service_1.CheckinService]
         }), 
-        __metadata('design:paramtypes', [stadiumSeats_service_1.StadiumSeatsService, checkin_service_1.CheckinService])
+        __metadata('design:paramtypes', [core_1.NgZone, stadiumSeats_service_1.StadiumSeatsService, checkin_service_1.CheckinService])
     ], StadiumSeatsComponent);
     return StadiumSeatsComponent;
 }());

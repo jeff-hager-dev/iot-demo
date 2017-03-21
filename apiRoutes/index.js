@@ -9,7 +9,7 @@ module.exports = function(socketHandler){
     
     router.get('/api/checkin/:name/:gender/:number', checkin(socketHandler));
 
-    router.get('/api/standing/:number', standing(socketHandler));
+    router.get('/api/standing/:number/:isStanding', standing(socketHandler));
     
     router.get('/api/color/:number', color(socketHandler));
 

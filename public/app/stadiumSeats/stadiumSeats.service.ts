@@ -13,7 +13,7 @@ export class StadiumSeatsService {
     getMessages() {
         let observable = new Observable((observer:any) => {
             this.socket = io(this.url);
-            this.socket.on('message', (data:any) => {
+            this.socket.on('stand', (data:any) => {
                 observer.next(data);
             });
             return () => {

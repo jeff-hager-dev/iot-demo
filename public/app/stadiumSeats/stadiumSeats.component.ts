@@ -1,4 +1,4 @@
-import { Component, OnInit,OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, NgZone } from '@angular/core';
 import { StadiumSeatsService }       from './stadiumSeats.service';
 import { CheckinService }       from '../checkin.service';
 
@@ -14,43 +14,55 @@ export class StadiumSeatsComponent implements OnInit, OnDestroy {
     checkinConnection: any;
     count: number = 20;
 
-    constructor(private stadiumSeatsService:StadiumSeatsService, private checkinService: CheckinService) {}
-
-    setUsers() {
-        for(let index = 0; index < this.count; index++) {
-            let user = {
-                id: 1,
-                name: "Lauren",
-                gender: "F",
-                isStanding: true
-            };
-            if (index == 1 || index == 2) {
-                user.name = null;
-            }
-            if (index == 3 || index == 4 || index == 7) {
-                user.isStanding = false;
-            }
-            if (index == 3 || index == 6 || index == 5) {
-                user.gender = "M";
-            }
-            this.users.push(user);
-        }
-    }
+    constructor(private zone: NgZone,
+                private stadiumSeatsService:StadiumSeatsService, 
+                private checkinService: CheckinService) {}
 
     ngOnInit() {
-        this.standConnection = this.stadiumSeatsService.getMessages().subscribe(user => {
-            this.users.push(user);
-        });
-
-        this.checkinConnection = this.checkinService.getUsers().subscribe(user => {
-            this.users.push(user);
-        });
-
-        this.setUsers();
+        this.setupChairs();
+        this.checkinUsers();
+        this.updateStanding();
     }
 
     ngOnDestroy() {
         this.standConnection.unsubscribe();
         this.checkinConnection.unsubscribe();
+    }
+    setupChairs() {
+        for(let index = 0; index < this.count; index++) {
+            this.users.push({
+                number: null,
+                name: null,
+                gender: null,
+                isStanding: null
+            });
+        }
+    }
+    updateStanding() {
+        this.standConnection = this.stadiumSeatsService.getMessages().subscribe((data: any) => {
+            console.log('User updating standing', data);
+            this.zone.run(() => {
+                this.users.map((user: any)=>{
+                    if(user.number == data.number){
+                            user.isStanding = (data.isStanding == "true");
+                    }
+                });
+            });
+        });
+    }
+
+    checkinUsers(){
+        this.checkinConnection = this.checkinService.getUsers().subscribe((data: any) => {
+            console.log("User Checkin", data);
+            this.zone.run(() => {
+                this.users.map((user: any)=>{
+                if(user.number == data.number){
+                    user.gender = data.gender;
+                    user.name = data.name;
+                    user.isStanding = false;
+                }
+                });
+            });
+        });
     }
 }
