@@ -11,7 +11,6 @@ export class ReactionService {
             this.socket = io(this.url);
             this.socket.on('reaction', (data:any) => {
                 observer.next(data);
-                console.log(data);
             });
             return () => {
                 this.socket.disconnect();
