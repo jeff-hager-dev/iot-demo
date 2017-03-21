@@ -14,12 +14,9 @@ var StadiumSeatsComponent = (function () {
     function StadiumSeatsComponent(stadiumSeatsService) {
         this.stadiumSeatsService = stadiumSeatsService;
         this.users = [];
-        this.messages = [];
         this.count = 20;
     }
-    StadiumSeatsComponent.prototype.sendMessage = function () {
-        this.stadiumSeatsService.sendMessage(this.message);
-        this.message = '';
+    StadiumSeatsComponent.prototype.setUsers = function () {
         for (var index = 0; index < this.count; index++) {
             var user = {
                 id: 1,
@@ -41,9 +38,10 @@ var StadiumSeatsComponent = (function () {
     };
     StadiumSeatsComponent.prototype.ngOnInit = function () {
         var _this = this;
-        this.connection = this.stadiumSeatsService.getMessages().subscribe(function (message) {
-            _this.messages.push(message);
+        this.connection = this.stadiumSeatsService.getMessages().subscribe(function (user) {
+            _this.users.push(user);
         });
+        this.setUsers();
     };
     StadiumSeatsComponent.prototype.ngOnDestroy = function () {
         this.connection.unsubscribe();
@@ -52,6 +50,7 @@ var StadiumSeatsComponent = (function () {
         core_1.Component({
             selector: 'stadium-seat-component',
             templateUrl: './app/stadiumSeats/stadiumSeats.component.html',
+            styleUrls: ['./app/stadiumSeats/stadiumSeats.component.css'],
             providers: [stadiumSeats_service_1.StadiumSeatsService]
         }), 
         __metadata('design:paramtypes', [stadiumSeats_service_1.StadiumSeatsService])

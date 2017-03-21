@@ -13,10 +13,28 @@ var reaction_service_1 = require('./reaction.service');
 var ReactionComponent = (function () {
     function ReactionComponent(reactionService) {
         this.reactionService = reactionService;
-        this.users = [];
         this.reactions = [];
-        this.count = 20;
+        this.countdown = 3;
+        this.isCountdown = false;
     }
+    ReactionComponent.prototype.startCountdown = function () {
+        var _this = this;
+        this.isCountdown = true;
+        setTimeout(function () {
+            _this.countdown = 2;
+            setTimeout(function () {
+                _this.countdown = 1;
+                setTimeout(function () {
+                    _this.countdown = "GO!";
+                    _this.startTime = new Date();
+                    setTimeout(function () {
+                        _this.isCountdown = false;
+                        _this.countdown = 3;
+                    }, 5000);
+                }, 1000);
+            }, 1000);
+        }, 1000);
+    };
     ReactionComponent.prototype.ngOnInit = function () {
         var _this = this;
         this.connection = this.reactionService.getReactions().subscribe(function (reaction) {

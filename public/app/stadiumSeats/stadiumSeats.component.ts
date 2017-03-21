@@ -4,20 +4,17 @@ import { StadiumSeatsService }       from './stadiumSeats.service';
 @Component({
     selector: 'stadium-seat-component',
     templateUrl: './app/stadiumSeats/stadiumSeats.component.html',
+    styleUrls: ['./app/stadiumSeats/stadiumSeats.component.css'],
     providers: [StadiumSeatsService]
 })
 export class StadiumSeatsComponent implements OnInit, OnDestroy {
     users: any[] = [];
-    messages: any = [];
     connection: any;
-    message: any;
     count: number = 20;
 
     constructor(private stadiumSeatsService:StadiumSeatsService) {}
 
-    sendMessage(){
-        this.stadiumSeatsService.sendMessage(this.message);
-        this.message = '';
+    setUsers() {
         for(let index = 0; index < this.count; index++) {
             let user = {
                 id: 1,
@@ -39,10 +36,10 @@ export class StadiumSeatsComponent implements OnInit, OnDestroy {
     }
 
     ngOnInit() {
-        this.connection = this.stadiumSeatsService.getMessages().subscribe(message => {
-            this.messages.push(message);
-
-        })
+        this.connection = this.stadiumSeatsService.getMessages().subscribe(user => {
+            this.users.push(user);
+        });
+        this.setUsers();
     }
 
     ngOnDestroy() {

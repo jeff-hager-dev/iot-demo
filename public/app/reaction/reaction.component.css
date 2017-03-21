@@ -1,0 +1,12 @@
+.countdown {
+    font-size: 300px;
+    font-family: sans-serif;
+    font-weight: bolder;
+
+    display: flex;
+    align-self: center;
+    justify-content: center;
+}
+.disqualified {
+    text-decoration: line-through;
+}
