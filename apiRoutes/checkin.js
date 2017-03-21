@@ -34,7 +34,8 @@ var checkin = function(socketHandler){
         var data = {
             name: req.params.name,
             gender: req.params.gender,
-            number: req.params.number
+            number: req.params.number,
+            time: new Date()
         };
 
         socketHandler.checkin(data);

@@ -21,7 +21,8 @@ var color = function(socketHandler){
         }
 
         var data = {
-            number: req.params.number
+            number: req.params.number,
+            time: new Date()
         };
 
         socketHandler.setColor(data);

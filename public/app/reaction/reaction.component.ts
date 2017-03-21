@@ -1,5 +1,5 @@
 import { Component, OnInit,OnDestroy } from '@angular/core';
-import { ReactionService }       from './reaction.service';
+import { ReactionService } from './reaction.service';
 
 @Component({
     selector: 'reaction-component',
@@ -38,6 +38,7 @@ export class ReactionComponent implements OnInit, OnDestroy {
     ngOnInit() {
         this.connection = this.reactionService.getReactions().subscribe(reaction => {
             this.reactions.push(reaction);
+            console.log(reaction);
         })
     }
 
