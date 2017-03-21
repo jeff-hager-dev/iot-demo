@@ -6,7 +6,7 @@
  *       - application/json
  *     parameters:
  *       - name: number
- *         description: name of user
+ *         description: user identifier
  *         in: path
  *         required: true
  *         type: number

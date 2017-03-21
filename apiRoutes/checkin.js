@@ -11,7 +11,7 @@
  *         required: true
  *         type: string
  *       - name: number
- *         description: device number.
+ *         description: user identifier.
  *         in: path
  *         required: true
  *         type: number
