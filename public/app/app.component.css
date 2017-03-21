@@ -1,0 +1,18 @@
+button {
+    font-size: medium;
+    padding: 10px;
+    margin: 10px;
+}
+
+.button-holder {
+    margin: 10px;
+    display: flex;
+    align-self: center;
+    justify-content: center;
+}
+
+.active {
+    background-color: highlightText;
+    color: white;
+    outline: none;
+}

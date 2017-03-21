@@ -1,9 +1,11 @@
-<div>
-    <span><button (click)="setExercise(1)">Stadium Seating</button></span>
-    <span><button (click)="setExercise(2)">Reaction Time</button></span>
-    <span><button (click)="setExercise(3)">Colors</button></span>
-</div>
-<div>
-    <stadium-seat-component *ngIf="selectedExercise == 1"></stadium-seat-component>
-    <reaction-component *ngIf="selectedExercise == 2"></reaction-component>
+<div class="app-container">
+    <div class="button-holder">
+        <span><button (click)="setExercise(1)" [ngClass]="{'active': selectedExercise == 1}">Stadium Seating</button></span>
+        <span><button (click)="setExercise(2)" [ngClass]="{'active': selectedExercise == 2}">Reaction Time</button></span>
+        <span><button (click)="setExercise(3)" [ngClass]="{'active': selectedExercise == 3}">Colors</button></span>
+    </div>
+    <div>
+        <stadium-seat-component *ngIf="selectedExercise == 1"></stadium-seat-component>
+        <reaction-component *ngIf="selectedExercise == 2"></reaction-component>
+    </div>
 </div>

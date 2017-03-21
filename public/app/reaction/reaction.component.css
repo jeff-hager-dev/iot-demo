@@ -2,11 +2,17 @@
     font-size: 300px;
     font-family: sans-serif;
     font-weight: bolder;
+}
 
+.countdown, .countdown-button {
     display: flex;
     align-self: center;
     justify-content: center;
 }
 .disqualified {
     text-decoration: line-through;
+}
+
+.button {
+    align-self: center;
 }

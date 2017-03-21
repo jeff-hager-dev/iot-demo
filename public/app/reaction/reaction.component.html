@@ -1,7 +1,7 @@
-<button (click)="startCountdown()">Start the Countdown!</button>
+<button (click)="startCountdown()" class="countdown-button">Start the Countdown!</button>
 <div *ngIf="isCountdown" class="countdown">{{countdown}}</div>
 <ul>
     <li *ngFor="let reaction of reactions">
-        <div ngClass="{'disqualified': reaction.time > startTime}">{{index + 1}}. {{reaction.number}} - {{reaction.time}}</div>
+        <div [ngClass]="{'disqualified': reaction.time > startTime}">{{index + 1}}. {{reaction.number}} - {{reaction.time}}</div>
     </li>
 </ul>
