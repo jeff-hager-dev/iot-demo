@@ -1,0 +1,10 @@
+#header {
+    width: 100%;;
+}
+
+#header > span.title {
+    font-size: 50px;
+    display: flex;
+    align-self: center;
+    justify-content: center;
+}

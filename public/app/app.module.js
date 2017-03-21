@@ -11,6 +11,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require('@angular/core');
 var platform_browser_1 = require('@angular/platform-browser');
 var stadiumSeats_component_1 = require('./stadiumSeats/stadiumSeats.component');
+var header_component_1 = require('./header/header.component');
 var reaction_component_1 = require('./reaction/reaction.component');
 var app_component_1 = require('./app.component');
 var forms_1 = require('@angular/forms');
@@ -27,6 +28,7 @@ var AppModule = (function () {
                 app_component_1.AppComponent,
                 stadiumSeats_component_1.StadiumSeatsComponent,
                 reaction_component_1.ReactionComponent,
+                header_component_1.HeaderComponent
             ],
             bootstrap: [app_component_1.AppComponent]
         }), 
