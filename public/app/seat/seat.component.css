@@ -1,0 +1,28 @@
+
+span.chair {
+    display: inline-block;
+    height: 200px;
+    width: 80px;
+    position: relative;
+}
+
+span.chair  > img {
+    position: absolute;
+    bottom: 5px;
+}
+
+img.empty {}
+
+img.standing-m {
+    left: -5px;
+}
+
+img.sitting-m {}
+
+img.standing-f {
+    left: -5px;
+}
+
+img.sitting-f {
+    left: -7px;
+}

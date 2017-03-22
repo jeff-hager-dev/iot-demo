@@ -13,6 +13,7 @@ var platform_browser_1 = require('@angular/platform-browser');
 var stadiumSeats_component_1 = require('./stadiumSeats/stadiumSeats.component');
 var header_component_1 = require('./header/header.component');
 var reaction_component_1 = require('./reaction/reaction.component');
+var seat_component_1 = require('./seat/seat.component');
 var app_component_1 = require('./app.component');
 var forms_1 = require('@angular/forms');
 var AppModule = (function () {
@@ -27,6 +28,7 @@ var AppModule = (function () {
             declarations: [
                 app_component_1.AppComponent,
                 stadiumSeats_component_1.StadiumSeatsComponent,
+                seat_component_1.SeatComponent,
                 reaction_component_1.ReactionComponent,
                 header_component_1.HeaderComponent
             ],
