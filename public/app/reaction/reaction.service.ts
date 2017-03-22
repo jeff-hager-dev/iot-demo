@@ -3,7 +3,7 @@ import { Observable } from 'rxjs/Observable';
 import * as io from 'socket.io-client';
 
 export class ReactionService {
-    private url = 'http://localhost:3005';
+    private url = window.location.origin;
     private socket: any;
 
     getReactions() {
