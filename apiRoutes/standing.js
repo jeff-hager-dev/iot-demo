@@ -25,10 +25,14 @@ var standing = function(socketHandler){
        if(!req.params || !req.params.number || !req.params.isStanding) {
             res.status(400).json({"message": "missing information"});
         }
-
+        var isStanding = false;
+        var isStandingStr = req.params.isStanding.toUpperCase();
+        if(isStandingStr === "TRUE" || isStandingStr === "T" || isStandingStr === "1" ){
+            isStanding = true;
+        }
         var data = {
             number: req.params.number,
-            isStanding: req.params.isStanding
+            isStanding: isStanding
         };
 
         socketHandler.stand(data);

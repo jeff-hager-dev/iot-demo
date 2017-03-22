@@ -31,9 +31,16 @@ var checkin = function(socketHandler){
             res.status(400).json({"message": "missing information"});
         }
 
+        var gender = req.params.gender.toUpperCase();
+        if(gender == "MALE" || gender == "M" ) {
+            gender = "M";
+        } else if(gender == "FEMALE" || gender == "F" ) {
+            gender = "F";
+        }
+
         var data = {
             name: req.params.name,
-            gender: req.params.gender,
+            gender: gender,
             number: req.params.number,
             time: new Date()
         };

@@ -29,6 +29,7 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'public')));
+app.use('/node_modules/bootstrap/dist/css', express.static(__dirname + '/node_modules/bootstrap/dist/css'));
 app.use('/node_modules/core-js/client', express.static(__dirname + '/node_modules/core-js/client/'));
 app.use('/node_modules/zone.js/dist', express.static(__dirname + '/node_modules/zone.js/dist/'));
 app.use('/node_modules/systemjs/dist', express.static(__dirname + '/node_modules/systemjs/dist/'));
@@ -38,7 +39,6 @@ app.use('/node_modules/rxjs', express.static(__dirname + '/node_modules/rxjs/'))
 app.use('/node_modules/socket.io-client/', express.static(__dirname + '/node_modules/socket.io-client/'));
 app.use('/node_modules/moment/min/moment-with-locales.js', express.static(__dirname + '/node_modules/moment/min/moment-with-locales.js'));
 app.use('/node_modules/angular-in-memory-web-api/bundles/in-memory-web-api.umd.js', express.static(__dirname + '/node_modules/angular-in-memory-web-api/bundles/in-memory-web-api.umd.js/'));
-
 
 var server = require('http').createServer(app);
 var socketHandler = require('./socketEvents')(server);

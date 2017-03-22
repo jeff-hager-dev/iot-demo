@@ -42,7 +42,7 @@ export class StadiumSeatsComponent implements OnInit, OnDestroy {
             console.log('User standing update', data);
             for(var user of this.users) {
                 if(user.number == (data.number||-1)){
-                        user.isStanding = (data.isStanding == "true");
+                        user.isStanding = data.isStanding;
                 }
             }
         });

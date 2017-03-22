@@ -1,10 +1,14 @@
 <div class="app-container">
     <app-header></app-header>
-    <div class="button-holder">
-        <span><button (click)="setExercise(1)" [ngClass]="{'active': selectedExercise == 1}">Stadium Seating</button></span>
-        <span><button (click)="setExercise(2)" [ngClass]="{'active': selectedExercise == 2}">Reaction Time</button></span>
-        <span><button (click)="setExercise(3)" [ngClass]="{'active': selectedExercise == 3}">Colors</button></span>
-    </div>
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <ul class="nav navbar-nav">
+                <li><a href="#Stadium-Seating" (click)="setExercise(1)" [ngClass]="{'active': selectedExercise == 1}">Stadium Seating</a></li>
+                <li><a href="#Reaction-Time" (click)="setExercise(2)" [ngClass]="{'active': selectedExercise == 2}">Reaction Time</a></li>
+                <li><a href="#Colors" (click)="setExercise(3)" [ngClass]="{'active': selectedExercise == 3}">Colors</a></li>
+            </ul>
+        </div>
+    </nav>
     <div>
         <stadium-seat-component *ngIf="selectedExercise == 1"></stadium-seat-component>
         <reaction-component *ngIf="selectedExercise == 2"></reaction-component>

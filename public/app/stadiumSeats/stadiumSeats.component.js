@@ -44,7 +44,7 @@ var StadiumSeatsComponent = (function () {
             for (var _i = 0, _a = _this.users; _i < _a.length; _i++) {
                 var user = _a[_i];
                 if (user.number == (data.number || -1)) {
-                    user.isStanding = (data.isStanding == "true");
+                    user.isStanding = data.isStanding;
                 }
             }
         });
