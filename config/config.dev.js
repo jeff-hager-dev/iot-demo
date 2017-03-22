@@ -1,4 +1,5 @@
 module.exports = {
+    port: 3005,
     swaggerOptions: {
         swaggerDefinition: {
             info: {
@@ -6,12 +7,12 @@ module.exports = {
             version: '1.0.0',
             description: 'Demonstrating IOT',
             },
-            host: '138.197.86.37:'+port,
+            host: '138.197.86.37:3005',
             basePath: '/',
         },
         apis: ['./apiRoutes/*.js'],
     },
-    allowedOrigins = [
+    allowedOrigins: [
         'http://127.0.0.1:3005', 
         'http://localhost:3005', 
         'http://138.197.86.37:3005'
