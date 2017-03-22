@@ -36,6 +36,7 @@
     "@types/socket.io-client": "^1.4.29",
     "angular-in-memory-web-api": "~0.2.4",
     "body-parser": "^1.17.1",
+    "bootstrap": "^3.3.7",
     "core-js": "^2.4.1",
     "express": "^4.15.2",
     "moment": "^2.18.1",
