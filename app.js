@@ -32,6 +32,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/node_modules/core-js/client', express.static(__dirname + '/node_modules/core-js/client/'));
 app.use('/node_modules/zone.js/dist', express.static(__dirname + '/node_modules/zone.js/dist/'));
 app.use('/node_modules/systemjs/dist', express.static(__dirname + '/node_modules/systemjs/dist/'));
+app.use('/node_modules/font-awesome/', express.static(__dirname + '/node_modules/font-awesome/'));
 app.use('/node_modules/@angular', express.static(__dirname + '/node_modules/@angular/'));
 app.use('/node_modules/rxjs', express.static(__dirname + '/node_modules/rxjs/'));
 app.use('/node_modules/socket.io-client/', express.static(__dirname + '/node_modules/socket.io-client/'));
