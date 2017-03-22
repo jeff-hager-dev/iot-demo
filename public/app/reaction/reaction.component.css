@@ -4,17 +4,16 @@
     font-weight: bolder;
 }
 
-.countdown, .countdown-button {
+.countdown-button {
+    margin-bottom: 20px;
+}
+
+.countdown, .countdown-button, table {
     display: flex;
     align-self: center;
     justify-content: center;
 }
-.disqualified {
-    text-decoration: line-through;
-}
 
-button {
-    font-size: medium;
-    padding: 10px;
-    margin: 10px;
+table {
+    width: auto;
 }

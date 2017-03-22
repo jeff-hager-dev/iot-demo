@@ -1,11 +1,22 @@
 <div *ngIf="!isCountdown" class="countdown-button">
-    <button (click)="startCountdown()">Start the Countdown!</button>
+    <button (click)="startCountdown()" class="btn btn-lg btn-primary">Start the Countdown!</button>
 </div>
 <div *ngIf="isCountdown" class="countdown">{{countdown}}</div>
-<ul>
-    <li *ngFor="let reaction of reactions; let i = index" [attr.data-index]="i">
-        <div [ngClass]="{'disqualified': reaction.time > startTime}">
-            {{i + 1}}. {{reaction.id}} - {{reaction.time}}
-        </div>
-    </li>
-</ul>
+<table *ngIf="reactions.length > 0" class="table table-striped">
+    <tr>
+        <th>#</th>
+        <th>User Number</th>
+        <th>Reaction Time</th>
+    </tr>
+    <tr *ngFor="let reaction of reactions; let i = index" [attr.data-index]="i">
+        <td>
+            {{i + 1}}.
+        </td>
+        <td>
+            {{reaction.id}}
+        </td>
+        <td>
+            {{reaction.time}}
+        </td>
+    </tr>
+</table>
