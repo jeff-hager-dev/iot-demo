@@ -11,14 +11,14 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var Observable_1 = require('rxjs/Observable');
 var io = require('socket.io-client');
 var core_1 = require('@angular/core');
+var config_1 = require('./config');
 var CheckinService = (function () {
     function CheckinService() {
-        this.url = 'http://localhost:3005';
     }
     CheckinService.prototype.getUsers = function () {
         var _this = this;
         var observable = new Observable_1.Observable(function (observer) {
-            _this.socket = io(_this.url);
+            _this.socket = io(config_1.Config.socketUrl);
             _this.socket.on('checkin', function (data) {
                 observer.next(data);
             });
