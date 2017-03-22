@@ -1,7 +1,12 @@
-<button (click)="startCountdown()" class="countdown-button">Start the Countdown!</button>
+<div *ngIf="!isCountdown" class="countdown-button">
+    <button (click)="startCountdown()">Start the Countdown!</button>
+</div>
 <div *ngIf="isCountdown" class="countdown">{{countdown}}</div>
+<div *ngIf="startTime">{{startTime}}</div>
 <ul>
-    <li *ngFor="let reaction of reactions">
-        <div [ngClass]="{'disqualified': reaction.time > startTime}">{{index + 1}}. {{reaction.number}} - {{reaction.time}}</div>
+    <li *ngFor="let reaction of reactions; let i = index" [attr.data-index]="i">
+        <div [ngClass]="{'disqualified': reaction.time > startTime}">
+            {{i + 1}}. {{reaction.id}} - {{reaction.time}}
+        </div>
     </li>
 </ul>

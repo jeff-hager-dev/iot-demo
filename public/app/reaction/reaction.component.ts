@@ -1,5 +1,6 @@
 import { Component, OnInit,OnDestroy } from '@angular/core';
 import { ReactionService } from './reaction.service';
+import * as moment from 'moment';
 
 @Component({
     selector: 'reaction-component',
@@ -7,18 +8,20 @@ import { ReactionService } from './reaction.service';
     styleUrls: ['./app/reaction/reaction.component.css'],
     providers: [ReactionService]
 })
+
 export class ReactionComponent implements OnInit, OnDestroy {
-    reactions: any = [];
+    reactions: any[] = [];
     connection: any;
     message: any;
     countdown: any = 3;
     isCountdown: boolean = false;
-    startTime: any;
+    startTime: Date;
 
     constructor(private reactionService:ReactionService) {}
 
     startCountdown() {
         this.isCountdown = true;
+        console.log(moment());
         setTimeout(() => {
             this.countdown = 2;
             setTimeout(() => {

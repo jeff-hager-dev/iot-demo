@@ -10,6 +10,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('@angular/core');
 var reaction_service_1 = require('./reaction.service');
+var moment = require('moment');
 var ReactionComponent = (function () {
     function ReactionComponent(reactionService) {
         this.reactionService = reactionService;
@@ -20,6 +21,7 @@ var ReactionComponent = (function () {
     ReactionComponent.prototype.startCountdown = function () {
         var _this = this;
         this.isCountdown = true;
+        console.log(moment());
         setTimeout(function () {
             _this.countdown = 2;
             setTimeout(function () {
