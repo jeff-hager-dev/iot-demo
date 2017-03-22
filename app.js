@@ -4,6 +4,7 @@ var logger = require('morgan');
 var bodyParser = require('body-parser');
 var swaggerJSDoc = require('swagger-jsdoc');
 var apiRoutes = require('./apiRoutes');
+var config = require('./config');
 
 var port = 3005;
 var app = express();
@@ -15,7 +16,7 @@ var options = {
       version: '1.0.0',
       description: 'Demonstrating IOT',
     },
-    host: 'localhost:'+port,
+    host: '138.197.86.37:'+port,
     basePath: '/',
   },
   apis: ['./apiRoutes/*.js'],
@@ -57,7 +58,9 @@ app.use(function(req, res, next) {
 });
  
 app.use(function (req, res, next) {
-  var allowedOrigins = ['http://127.0.0.1:3005', 'http://localhost:3005', 'http://127.0.0.1:3005', 'http://localhost:3005'];
+  var allowedOrigins = [
+    'http://127.0.0.1:3005', 'http://localhost:3005', 'http://138.197.86.37:3005'
+  ];
   var origin = req.headers.origin;
   console.log(origin);
   if(allowedOrigins.indexOf(origin) > -1){
