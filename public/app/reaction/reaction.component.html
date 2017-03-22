@@ -2,7 +2,6 @@
     <button (click)="startCountdown()">Start the Countdown!</button>
 </div>
 <div *ngIf="isCountdown" class="countdown">{{countdown}}</div>
-<div *ngIf="startTime">{{startTime}}</div>
 <ul>
     <li *ngFor="let reaction of reactions; let i = index" [attr.data-index]="i">
         <div [ngClass]="{'disqualified': reaction.time > startTime}">
