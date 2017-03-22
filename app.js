@@ -6,25 +6,10 @@ var swaggerJSDoc = require('swagger-jsdoc');
 var apiRoutes = require('./apiRoutes');
 var config = require('./config');
 
-var port = 3005;
 var app = express();
 
-var options = {
-  swaggerDefinition: {
-    info: {
-      title: 'IOT API',
-      version: '1.0.0',
-      description: 'Demonstrating IOT',
-    },
-    host: '138.197.86.37:'+port,
-    basePath: '/',
-  },
-  apis: ['./apiRoutes/*.js'],
-};
-
-
 // initialize swagger-jsdoc
-var swaggerSpec = swaggerJSDoc(options);
+var swaggerSpec = swaggerJSDoc(config.swaggerOptions);
 
 app.use(logger('dev'));
 app.use(bodyParser.json());
@@ -58,16 +43,14 @@ app.use(function(req, res, next) {
 });
  
 app.use(function (req, res, next) {
-  var allowedOrigins = [
-    'http://127.0.0.1:3005', 'http://localhost:3005', 'http://138.197.86.37:3005'
-  ];
   var origin = req.headers.origin;
-  console.log(origin);
-  if(allowedOrigins.indexOf(origin) > -1){
+  if(config.allowedOrigins.indexOf(origin) > -1){
        res.setHeader('Access-Control-Allow-Origin', origin);
   }
+  
   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
   res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
+
   next();
 });
 
@@ -83,7 +66,7 @@ app.use(function(req, res, next) {
 
 // development error handler
 // will print stacktrace
-if (app.get('env') === 'development') {
+if (config.env === 'dev') {
   app.use(function(err, req, res, next) {
     res.status( err.code || 500 )
     .json({
@@ -103,6 +86,6 @@ app.use(function(err, req, res, next) {
   });
 });
 
-server.listen(port, function(){
-  console.log(app.get('env')+" server listening on "+port);
+server.listen(config.port, function(){
+  console.log(config.env+" server listening on "+config.port);
 });
