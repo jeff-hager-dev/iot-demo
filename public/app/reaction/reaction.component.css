@@ -13,6 +13,8 @@
     text-decoration: line-through;
 }
 
-.button {
-    align-self: center;
+button {
+    font-size: medium;
+    padding: 10px;
+    margin: 10px;
 }

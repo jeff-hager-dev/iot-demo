@@ -25,9 +25,10 @@
       '@angular/forms': 'npm:@angular/forms/bundles/forms.umd.js',
 
       // other libraries
-      'rxjs': 'npm:rxjs',
-      'socket.io-client': 'node_modules/socket.io-client/dist/socket.io.js',
-      'angular-in-memory-web-api': 'npm:angular-in-memory-web-api/bundles/in-memory-web-api.umd.js'
+        'rxjs': 'npm:rxjs',
+        'socket.io-client': 'node_modules/socket.io-client/dist/socket.io.js',
+        'angular-in-memory-web-api': 'npm:angular-in-memory-web-api/bundles/in-memory-web-api.umd.js',
+        'moment': 'node_modules/moment/min/moment-with-locales.js'
     },
     // packages tells the System loader how to load when no filename and/or no extension
     packages: {
@@ -39,7 +40,10 @@
       },
       'socket.io-client': {
         defaultExtension: 'js'
-      }
+      },
+        'moment': {
+      defaultExtension: 'js'
+}
     }
   });
 })(this);

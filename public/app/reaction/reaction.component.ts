@@ -1,5 +1,6 @@
 import { Component, OnInit,OnDestroy } from '@angular/core';
 import { ReactionService } from './reaction.service';
+import * as moment from 'moment';
 
 @Component({
     selector: 'reaction-component',
@@ -7,13 +8,14 @@ import { ReactionService } from './reaction.service';
     styleUrls: ['./app/reaction/reaction.component.css'],
     providers: [ReactionService]
 })
+
 export class ReactionComponent implements OnInit, OnDestroy {
-    reactions: any = [];
+    reactions: any[] = [];
     connection: any;
     message: any;
     countdown: any = 3;
     isCountdown: boolean = false;
-    startTime: any;
+    startTime: Date;
 
     constructor(private reactionService:ReactionService) {}
 
@@ -35,9 +37,26 @@ export class ReactionComponent implements OnInit, OnDestroy {
         }, 1000);
     }
 
+    createNewReaction(reaction: any) {
+        let now  = reaction.time;
+        let then = this.startTime;
+
+        let diff = moment(now, "YYYY-MM-DD HH:mm:ss.SSSZ").diff(moment(then));
+        let d = moment.duration(diff);
+        let s = Math.floor(d.asHours()) + moment.utc(diff).format(":mm:ss");
+        let newReaction = {
+            id: reaction.number,
+            time: s
+        };
+        let existing = this.reactions.filter(reaction => reaction.id == newReaction.id);
+        if (existing.length == 0 && this.startTime) {
+            this.reactions.push(newReaction);
+        }
+    }
+
     ngOnInit() {
         this.connection = this.reactionService.getReactions().subscribe(reaction => {
-            this.reactions.push(reaction);
+            this.createNewReaction(reaction);
             console.log(reaction);
         })
     }

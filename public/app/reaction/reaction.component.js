@@ -10,6 +10,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('@angular/core');
 var reaction_service_1 = require('./reaction.service');
+var moment = require('moment');
 var ReactionComponent = (function () {
     function ReactionComponent(reactionService) {
         this.reactionService = reactionService;
@@ -35,10 +36,25 @@ var ReactionComponent = (function () {
             }, 1000);
         }, 1000);
     };
+    ReactionComponent.prototype.createNewReaction = function (reaction) {
+        var now = reaction.time;
+        var then = this.startTime;
+        var diff = moment(now, "YYYY-MM-DD HH:mm:ss.SSSZ").diff(moment(then));
+        var d = moment.duration(diff);
+        var s = Math.floor(d.asHours()) + moment.utc(diff).format(":mm:ss");
+        var newReaction = {
+            id: reaction.number,
+            time: s
+        };
+        var existing = this.reactions.filter(function (reaction) { return reaction.id == newReaction.id; });
+        if (existing.length == 0 && this.startTime) {
+            this.reactions.push(newReaction);
+        }
+    };
     ReactionComponent.prototype.ngOnInit = function () {
         var _this = this;
         this.connection = this.reactionService.getReactions().subscribe(function (reaction) {
-            _this.reactions.push(reaction);
+            _this.createNewReaction(reaction);
             console.log(reaction);
         });
     };

@@ -1,0 +1,1 @@
+export { SeatComponent } from './seat.component';
