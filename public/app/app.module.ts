@@ -5,6 +5,7 @@ import { HeaderComponent } from './header/header.component';
 import { ReactionComponent } from './reaction/reaction.component';
 import { AppComponent }  from './app.component';
 import { FormsModule } from '@angular/forms';
+import { ColorComponent } from './color/color.component'
 
 @NgModule({
   imports: [
@@ -15,7 +16,8 @@ import { FormsModule } from '@angular/forms';
     AppComponent,
     StadiumSeatsComponent,
     ReactionComponent,
-    HeaderComponent
+    HeaderComponent,
+    ColorComponent
   ],
   bootstrap: [ AppComponent ]
 })

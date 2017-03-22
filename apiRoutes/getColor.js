@@ -1,3 +1,4 @@
+var colorData = require('./color.data.js');
 /**
  * @swagger
  * api/color/{number}:
@@ -14,20 +15,14 @@
  *       200:
  *         description: color hex value
  */
-var color = function(socketHandler){
-    return function(req, res){
+var getColor = function(socketHandler) {
+    return function(req, res) {
         if(!req.params || !req.params.number) {
             res.status(400).json({"message": "missing information"});
         }
 
-        var data = {
-            number: req.params.number,
-            time: new Date()
-        };
-
-        socketHandler.setColor(data);
-        res.status(200).json({"message": "success"});
+        res.status(200).json(colorData.get(req.params.number));
     };
 };
 
-module.exports = color;
+module.exports = getColor;

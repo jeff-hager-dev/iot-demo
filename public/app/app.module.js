@@ -15,6 +15,7 @@ var header_component_1 = require('./header/header.component');
 var reaction_component_1 = require('./reaction/reaction.component');
 var app_component_1 = require('./app.component');
 var forms_1 = require('@angular/forms');
+var color_component_1 = require('./color/color.component');
 var AppModule = (function () {
     function AppModule() {
     }
@@ -28,7 +29,8 @@ var AppModule = (function () {
                 app_component_1.AppComponent,
                 stadiumSeats_component_1.StadiumSeatsComponent,
                 reaction_component_1.ReactionComponent,
-                header_component_1.HeaderComponent
+                header_component_1.HeaderComponent,
+                color_component_1.ColorComponent
             ],
             bootstrap: [app_component_1.AppComponent]
         }), 
