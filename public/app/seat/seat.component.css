@@ -26,3 +26,15 @@ img.standing-f {
 img.sitting-f {
     left: -7px;
 }
+
+span.seat-number {
+    position: absolute;
+    bottom: 2px;
+    left: 2px;
+}
+span.user-name {
+    position: absolute;
+    top: 1px;
+    text-align: center;
+    width: 100%;
+}
