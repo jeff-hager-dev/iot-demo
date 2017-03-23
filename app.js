@@ -24,6 +24,7 @@ app.use('/node_modules/@angular', express.static(__dirname + '/node_modules/@ang
 app.use('/node_modules/rxjs', express.static(__dirname + '/node_modules/rxjs/'));
 app.use('/node_modules/socket.io-client/', express.static(__dirname + '/node_modules/socket.io-client/'));
 app.use('/node_modules/moment/min/moment-with-locales.js', express.static(__dirname + '/node_modules/moment/min/moment-with-locales.js'));
+app.use('/node_modules/moment-timezone/builds/moment-timezone.min.js', express.static(__dirname + '/node_modules/moment-timezone/builds/moment-timezone.min.js'));
 app.use('/node_modules/angular-in-memory-web-api/bundles/in-memory-web-api.umd.js', express.static(__dirname + '/node_modules/angular-in-memory-web-api/bundles/in-memory-web-api.umd.js/'));
 app.use('/node_modules/angular2-color-picker', express.static(__dirname + '/node_modules/angular2-color-picker/'));
 
