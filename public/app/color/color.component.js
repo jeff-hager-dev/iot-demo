@@ -27,14 +27,13 @@ var ColorComponent = (function () {
         this.count = 20;
     }
     ColorComponent.prototype.setColor = function (color, user) {
-        console.log("Color set:" + color);
-        this.colorService.setColor(user, color);
+        this.colorService.setColor(user, color.slice(1));
     };
     ColorComponent.prototype.setAllColors = function (color) {
         var _this = this;
         this.colors.forEach(function (userColor) {
             userColor.color = color;
-            _this.colorService.setColor(userColor.number, userColor.color);
+            _this.colorService.setColor(userColor.number, userColor.color.slice(1));
         });
     };
     ColorComponent.prototype.setupColors = function () {

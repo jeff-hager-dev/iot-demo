@@ -24,14 +24,13 @@ export class ColorComponent implements OnInit, OnDestroy {
     }
 
     setColor(color: string, user: number) {
-        console.log("Color set:" + color);
-        this.colorService.setColor(user, color);
+        this.colorService.setColor(user, color.slice(1));
     }
 
     setAllColors(color: string){
         this.colors.forEach((userColor) => {
            userColor.color = color;
-            this.colorService.setColor(userColor.number, userColor.color);
+           this.colorService.setColor(userColor.number, userColor.color.slice(1));
         });
     }
 
