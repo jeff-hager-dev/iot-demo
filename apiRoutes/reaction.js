@@ -1,3 +1,4 @@
+var moment = require('moment-timezone');
 /**
  * @swagger
  * api/reaction/{number}:
@@ -22,7 +23,7 @@ var reaction = function(socketHandler){
 
         var data = {
             number: req.params.number,
-            time: new Date()
+            time: moment().tz('America/Chicago')
         };
         
         socketHandler.reaction(data);
