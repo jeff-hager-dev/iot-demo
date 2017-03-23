@@ -12,7 +12,7 @@
  *         type: number
  *         format: int
  *       - name: isOn
- *         description: is the user standing
+ *         description: is the switch on. true means switch is on and false means it is off
  *         in: path
  *         required: true
  *         type: bool
