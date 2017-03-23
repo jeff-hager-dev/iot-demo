@@ -1,11 +1,13 @@
-<h2>Pick a color!</h2>
-<div><button [(colorPicker)]="color"
+<h2 class="text-center"> Pick a color!</h2>
+<div class="text-center"><button [(colorPicker)]="color"
              [style.background-color]="color"
              (colorPickerChange)="setAllColors(color)"
              class="btn btn-default">Set All Users</button></div>
-<span *ngFor="let user of colors">
-    <button [(colorPicker)]="user.color"
+<div class="text-center">
+    <span *ngFor="let user of colors">
+        <button [(colorPicker)]="user.color"
             [style.background-color]="user.color"
             (colorPickerChange)="setColor(user.color, user.number)"
             class="btn btn-default">{{user.number}}</button>
-</span>
+    </span>
+</div>
