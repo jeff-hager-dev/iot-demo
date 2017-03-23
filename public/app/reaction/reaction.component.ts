@@ -44,10 +44,9 @@ export class ReactionComponent implements OnInit, OnDestroy {
     }
 
     createNewReaction(reaction: any) {
-        let now  = reaction.time;
-        let then = this.startTime;
-
-        let diff = moment(now, "YYYY-MM-DD HH:mm:ss.SSSZ").diff(moment(then));
+        let now  = moment(reaction.time);
+        let then = moment(this.startTime);
+        let diff = now.diff(then);
         let d = moment.duration(diff);
         let s = Math.floor(d.asHours()) + moment.utc(diff).format(":mm:ss");
         let newReaction = {
@@ -106,6 +105,7 @@ export class ReactionComponent implements OnInit, OnDestroy {
         this.setupUsers()
         this.connection = this.reactionService.getReactions().subscribe(reaction => {
             this.createNewReaction(reaction);
+
             console.log(reaction);
         });
         this.checkInUsers();

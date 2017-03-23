@@ -42,9 +42,9 @@ var ReactionComponent = (function () {
         }, 1000);
     };
     ReactionComponent.prototype.createNewReaction = function (reaction) {
-        var now = reaction.time;
-        var then = this.startTime;
-        var diff = moment(now, "YYYY-MM-DD HH:mm:ss.SSSZ").diff(moment(then));
+        var now = moment(reaction.time);
+        var then = moment(this.startTime);
+        var diff = now.diff(then);
         var d = moment.duration(diff);
         var s = Math.floor(d.asHours()) + moment.utc(diff).format(":mm:ss");
         var newReaction = {
