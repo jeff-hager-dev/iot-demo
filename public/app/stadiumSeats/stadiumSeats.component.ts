@@ -33,7 +33,7 @@ export class StadiumSeatsComponent implements OnInit, OnDestroy {
                 number: (index+1),
                 name: null,
                 gender: null,
-                isStanding: null
+                isOn: null
             });
         }
     }
@@ -42,7 +42,7 @@ export class StadiumSeatsComponent implements OnInit, OnDestroy {
             console.log('User standing update', data);
             for(var user of this.users) {
                 if(user.number == (data.number||-1)){
-                        user.isStanding = data.isStanding;
+                        user.isOn = data.isOn;
                 }
             }
         });
@@ -57,7 +57,7 @@ export class StadiumSeatsComponent implements OnInit, OnDestroy {
                         if(user.number == (info.number||-1)){
                             user.gender = info.gender;
                             user.name = info.name;
-                            user.isStanding = info.isStanding || false;
+                            user.isOn = info.isOn || false;
                         }
                     }
                 }
@@ -67,7 +67,7 @@ export class StadiumSeatsComponent implements OnInit, OnDestroy {
                     if(user.number == (data.number||-1)){
                         user.gender = data.gender;
                         user.name = data.name;
-                        user.isStanding = false;
+                        user.isOn = false;
                     }
                 }
             }

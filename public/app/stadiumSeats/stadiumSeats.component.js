@@ -33,7 +33,7 @@ var StadiumSeatsComponent = (function () {
                 number: (index + 1),
                 name: null,
                 gender: null,
-                isStanding: null
+                isOn: null
             });
         }
     };
@@ -44,7 +44,7 @@ var StadiumSeatsComponent = (function () {
             for (var _i = 0, _a = _this.users; _i < _a.length; _i++) {
                 var user = _a[_i];
                 if (user.number == (data.number || -1)) {
-                    user.isStanding = data.isStanding;
+                    user.isOn = data.isOn;
                 }
             }
         });
@@ -61,7 +61,7 @@ var StadiumSeatsComponent = (function () {
                         if (user.number == (info.number || -1)) {
                             user.gender = info.gender;
                             user.name = info.name;
-                            user.isStanding = info.isStanding || false;
+                            user.isOn = info.isOn || false;
                         }
                     }
                 }
@@ -72,7 +72,7 @@ var StadiumSeatsComponent = (function () {
                     if (user.number == (data.number || -1)) {
                         user.gender = data.gender;
                         user.name = data.name;
-                        user.isStanding = false;
+                        user.isOn = false;
                     }
                 }
             }
