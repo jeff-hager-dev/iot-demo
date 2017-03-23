@@ -7,7 +7,7 @@ import { Config } from './config';
 @Injectable()
 export class CheckinService {
     private socket: any;
-
+    
     getUsers() {
         let observable = new Observable((observer:any) => {
             this.socket = io(Config.socketUrl);
