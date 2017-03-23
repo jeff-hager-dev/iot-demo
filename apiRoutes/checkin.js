@@ -1,3 +1,4 @@
+var userData = require('./users.data');
 /**
  * @swagger
  * api/checkin/{name}/{gender}/{number}:
@@ -46,6 +47,7 @@ var checkin = function(socketHandler){
         };
 
         socketHandler.checkin(data);
+        userData.add(data.number, data);
         res.status(200).json({"message": "checked in"});
     };
 };

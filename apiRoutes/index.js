@@ -4,13 +4,15 @@ var reaction = require('./reaction');
 var getColor = require('./getColor');
 var setColor = require('./setColor');
 var checkin = require('./checkin');
-var standing = require('./standing');
+var clearCheckin = require('./clearCheckin');
+var switchApi = require('./switchApi');
 
 module.exports = function(socketHandler) {
-    
+    router.get('/api/checkin/clear', clearCheckin);
+
     router.get('/api/checkin/:name/:gender/:number', checkin(socketHandler));
 
-    router.get('/api/standing/:number/:isStanding', standing(socketHandler));
+    router.get('/api/switch/:number/:isOn', switchApi(socketHandler));
     
     router.get('/api/color/:number/:color', setColor(socketHandler));
 

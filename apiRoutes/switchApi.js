@@ -1,6 +1,6 @@
 /**
  * @swagger
- * api/standing/{number}/{isStanding}:
+ * api/switch/{number}/{isOn}:
  *   get:
  *     produces:
  *       - application/json
@@ -11,8 +11,8 @@
  *         required: true
  *         type: number
  *         format: int
- *       - name: isStanding
- *         description: is the user standing
+ *       - name: isOn
+ *         description: is the switch on. true means switch is on and false means it is off
  *         in: path
  *         required: true
  *         type: bool
@@ -20,19 +20,19 @@
  *       200:
  *         description: message
  */
-var standing = function(socketHandler){
+var switchApi = function(socketHandler){
     return function(req, res){
-       if(!req.params || !req.params.number || !req.params.isStanding) {
+       if(!req.params || !req.params.number || !req.params.isOn) {
             res.status(400).json({"message": "missing information"});
         }
-        var isStanding = false;
-        var isStandingStr = req.params.isStanding.toUpperCase();
-        if(isStandingStr === "TRUE" || isStandingStr === "T" || isStandingStr === "1" ){
-            isStanding = true;
+        var isOn = false;
+        var isOnStr = req.params.isOn.toUpperCase();
+        if(isOnStr === "TRUE" || isOnStr === "T" || isOnStr === "1" ){
+            isOn = true;
         }
         var data = {
             number: req.params.number,
-            isStanding: isStanding
+            isOn: isOn
         };
 
         socketHandler.stand(data);
@@ -40,4 +40,4 @@ var standing = function(socketHandler){
     };
 };
 
-module.exports = standing;
+module.exports = switchApi;

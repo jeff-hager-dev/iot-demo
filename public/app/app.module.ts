@@ -8,11 +8,13 @@ import { SeatComponent } from './seat/seat.component';
 import { AppComponent }  from './app.component';
 import { FormsModule } from '@angular/forms';
 import { ColorComponent } from './color/color.component'
+import { ColorPickerModule } from 'angular2-color-picker';
 
 @NgModule({
   imports: [
     BrowserModule,
     FormsModule,
+    ColorPickerModule,
     HttpModule
   ],
   declarations: [

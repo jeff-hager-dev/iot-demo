@@ -1,9 +1,12 @@
+var userData = require('../apiRoutes/users.data');
+
 module.exports = function(server){
     var socketHandler = {};
     var io = require('socket.io')(server);
 
     io.on('connection', function(socket) {
-        socket.emit('welcome', { message: 'Welcome!', id: socket.id });
+        socket.emit('welcome', { message: 'Welcome!', id: socket.id});
+        io.emit('checkin', userData.getAll());
     });
     
     socketHandler.checkin = function(data){
