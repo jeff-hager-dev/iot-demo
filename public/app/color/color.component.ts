@@ -22,11 +22,7 @@ export class ColorComponent implements OnInit, OnDestroy {
     }
 
     setColor(color: string, user: number) {
-<<<<<<< HEAD
-        this.colorService.setColor(user, color);
-=======
         this.colorService.setColor(user, color.slice(1));
->>>>>>> f16c67dad82b66f9cf45307bf5ccb557a7456b21
     }
 
     setAllColors(color: string){
