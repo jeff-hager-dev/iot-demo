@@ -2,7 +2,7 @@ var colorData = require('./color.data.js');
 /**
  * @swagger
  * api/color/{number}/{color}:
- *   post:
+ *   get:
  *     produces:
  *       - application/json
  *     parameters:

@@ -9,19 +9,25 @@ import { ColorService } from './color.service';
 })
 export class ColorComponent implements OnInit, OnDestroy {
     colors: any = [];
-    connection: any;
-    message: any;
+    //connection: any;
+    //message: any;
 
-    constructor(private colorService:ColorService) {}
+    constructor(private colorService: ColorService) {}
+
+    setColor() {
+        this.colorService.setColor(1, '#332211');
+    }
+
 
     ngOnInit() {
+        /*
         this.connection = this.colorService.getColors().subscribe(color => {
             this.colors.push(color);
             console.log(color);
-        })
+        })*/
     }
 
     ngOnDestroy() {
-        this.connection.unsubscribe();
+        //this.connection.unsubscribe();
     }
 }

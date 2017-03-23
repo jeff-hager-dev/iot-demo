@@ -1,21 +1,15 @@
-import { Subject } from 'rxjs/Subject';
-import { Observable } from 'rxjs/Observable';
-import * as io from 'socket.io-client';
+//import { Http } from '@angular/http';
 
 export class ColorService {
-    private url = 'http://localhost:3005';
-    private socket: any;
+    private url = 'http://localhost:3005/1/#CCCCCC';
 
-    getColors() {
-        let observable = new Observable((observer:any) => {
-            this.socket = io(this.url);
-            this.socket.on('color', (data:any) => {
-                observer.next(data);
-            });
-            return () => {
-                this.socket.disconnect();
-            };
-        });
-        return observable;
+    constructor() {}
+
+    setColor(number: any, color: any) {
+        alert('color service called');
+        //this.http.get(this.url)
+        //.then(function(response: any) {
+        //    alert('response was called!');
+        //})
     }
 }

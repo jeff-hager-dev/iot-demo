@@ -11,19 +11,24 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require('@angular/core');
 var color_service_1 = require('./color.service');
 var ColorComponent = (function () {
+    //connection: any;
+    //message: any;
     function ColorComponent(colorService) {
         this.colorService = colorService;
         this.colors = [];
     }
+    ColorComponent.prototype.setColor = function () {
+        this.colorService.setColor(1, '#332211');
+    };
     ColorComponent.prototype.ngOnInit = function () {
-        var _this = this;
-        this.connection = this.colorService.getColors().subscribe(function (color) {
-            _this.colors.push(color);
+        /*
+        this.connection = this.colorService.getColors().subscribe(color => {
+            this.colors.push(color);
             console.log(color);
-        });
+        })*/
     };
     ColorComponent.prototype.ngOnDestroy = function () {
-        this.connection.unsubscribe();
+        //this.connection.unsubscribe();
     };
     ColorComponent = __decorate([
         core_1.Component({
