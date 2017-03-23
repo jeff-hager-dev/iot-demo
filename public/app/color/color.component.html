@@ -1,2 +1,11 @@
 <h2>Pick a color!</h2>
-<a href="#SetColor" (click)="setColor(1, '#ccc')" [ngClass]="{'active': selectedExercise == 1}">Set Color!</a>
+<div><button [(colorPicker)]="color"
+             [style.background-color]="color"
+             (colorPickerChange)="setAllColors(color)"
+             class="btn btn-default">Set All Users</button></div>
+<span *ngFor="let user of colors">
+    <button [(colorPicker)]="user.color"
+            [style.background-color]="user.color"
+            (colorPickerChange)="setColor(user.color, user.number)"
+            class="btn btn-default">{{user.number}}</button>
+</span>

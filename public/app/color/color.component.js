@@ -10,17 +10,43 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('@angular/core');
 var color_service_1 = require('./color.service');
+var angular2_color_picker_1 = require('angular2-color-picker');
+var Color = (function () {
+    function Color() {
+    }
+    return Color;
+}());
+exports.Color = Color;
 var ColorComponent = (function () {
     //connection: any;
     //message: any;
     function ColorComponent(colorService) {
         this.colorService = colorService;
         this.colors = [];
+        this.color = '#fff';
+        this.count = 20;
     }
-    ColorComponent.prototype.setColor = function () {
-        this.colorService.setColor(1, '#332211');
+    ColorComponent.prototype.setColor = function (color, user) {
+        console.log("Color set:" + color);
+        this.colorService.setColor(user, color);
+    };
+    ColorComponent.prototype.setAllColors = function (color) {
+        var _this = this;
+        this.colors.forEach(function (userColor) {
+            userColor.color = color;
+            _this.colorService.setColor(userColor.number, userColor.color);
+        });
+    };
+    ColorComponent.prototype.setupColors = function () {
+        for (var index = 0; index < this.count; index++) {
+            this.colors.push({
+                number: (index + 1),
+                color: '#fff'
+            });
+        }
     };
     ColorComponent.prototype.ngOnInit = function () {
+        this.setupColors();
         /*
         this.connection = this.colorService.getColors().subscribe(color => {
             this.colors.push(color);
@@ -35,7 +61,7 @@ var ColorComponent = (function () {
             selector: 'color-component',
             templateUrl: './app/color/color.component.html',
             styleUrls: ['./app/color/color.component.css'],
-            providers: [color_service_1.ColorService]
+            providers: [color_service_1.ColorService, angular2_color_picker_1.ColorPickerService]
         }), 
         __metadata('design:paramtypes', [color_service_1.ColorService])
     ], ColorComponent);

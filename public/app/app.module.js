@@ -17,6 +17,7 @@ var seat_component_1 = require('./seat/seat.component');
 var app_component_1 = require('./app.component');
 var forms_1 = require('@angular/forms');
 var color_component_1 = require('./color/color.component');
+var angular2_color_picker_1 = require('angular2-color-picker');
 var AppModule = (function () {
     function AppModule() {
     }
@@ -24,7 +25,8 @@ var AppModule = (function () {
         core_1.NgModule({
             imports: [
                 platform_browser_1.BrowserModule,
-                forms_1.FormsModule
+                forms_1.FormsModule,
+                angular2_color_picker_1.ColorPickerModule,
             ],
             declarations: [
                 app_component_1.AppComponent,
