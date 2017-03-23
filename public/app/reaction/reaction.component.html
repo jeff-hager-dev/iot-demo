@@ -13,7 +13,7 @@
             {{i + 1}}.
         </td>
         <td>
-            {{reaction.id}}
+            {{reaction.name}}
         </td>
         <td>
             {{reaction.time}}
@@ -26,7 +26,7 @@
     </tr>
     <tr *ngFor="let user of disqualified; let i = index" [attr.data-index]="i" class="danger">
         <td>
-            {{user.id}}
+            {{user.name}}
         </td>
     </tr>
 </table>

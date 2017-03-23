@@ -21,6 +21,7 @@ var ReactionComponent = (function () {
         this.disqualified = [];
         this.countdown = 3;
         this.isCountdown = false;
+        this.count = 20;
     }
     ReactionComponent.prototype.startCountdown = function () {
         var _this = this;
@@ -48,19 +49,24 @@ var ReactionComponent = (function () {
         var s = Math.floor(d.asHours()) + moment.utc(diff).format(":mm:ss");
         var newReaction = {
             id: reaction.number,
+            name: reaction.number,
             time: s
         };
         for (var _i = 0, _a = this.users; _i < _a.length; _i++) {
             var user = _a[_i];
             if (user.number == (newReaction.id)) {
-                newReaction.id = user.name;
+                if (user.name) {
+                    newReaction.name = user.name;
+                }
+                break;
             }
         }
         var existing = this.reactions.filter(function (reaction) { return reaction.id == newReaction.id; });
-        if (existing.length == 0 && this.startTime) {
+        var existingDQ = this.disqualified.filter(function (reaction) { return reaction.id == newReaction.id; });
+        if (existing.length == 0 && existingDQ.length == 0 && this.startTime) {
             this.reactions.push(newReaction);
         }
-        else if (existing.length == 0 && !this.startTime) {
+        else if (existing.length == 0 && existingDQ.length == 0 && !this.startTime) {
             this.disqualified.push(newReaction);
         }
     };
@@ -88,8 +94,17 @@ var ReactionComponent = (function () {
             }
         });
     };
+    ReactionComponent.prototype.setupUsers = function () {
+        for (var index = 0; index < this.count; index++) {
+            this.users.push({
+                number: (index + 1),
+                name: null,
+            });
+        }
+    };
     ReactionComponent.prototype.ngOnInit = function () {
         var _this = this;
+        this.setupUsers();
         this.connection = this.reactionService.getReactions().subscribe(function (reaction) {
             _this.createNewReaction(reaction);
             console.log(reaction);

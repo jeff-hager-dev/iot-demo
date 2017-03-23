@@ -20,6 +20,7 @@ export class ReactionComponent implements OnInit, OnDestroy {
     isCountdown: boolean = false;
     startTime: Date;
     checkInConnection: any;
+    count: number = 20;
 
     constructor(private reactionService:ReactionService,
                 private checkinService: CheckinService) {}
@@ -51,17 +52,22 @@ export class ReactionComponent implements OnInit, OnDestroy {
         let s = Math.floor(d.asHours()) + moment.utc(diff).format(":mm:ss");
         let newReaction = {
             id: reaction.number,
+            name: reaction.number,
             time: s
         };
         for(let user of this.users) {
             if(user.number == (newReaction.id)){
-                newReaction.id = user.name;
+                if (user.name) {
+                    newReaction.name = user.name;
+                }
+                break;
             }
         }
         let existing = this.reactions.filter(reaction => reaction.id == newReaction.id);
-        if (existing.length == 0 && this.startTime) {
+        let existingDQ = this.disqualified.filter(reaction => reaction.id == newReaction.id);
+        if (existing.length == 0 && existingDQ.length == 0 && this.startTime) {
             this.reactions.push(newReaction);
-        } else if (existing.length == 0 && !this.startTime) {
+        } else if (existing.length == 0 && existingDQ.length == 0 && !this.startTime) {
             this.disqualified.push(newReaction);
         }
     }
@@ -87,7 +93,17 @@ export class ReactionComponent implements OnInit, OnDestroy {
         });
     }
 
+    setupUsers() {
+        for(let index = 0; index < this.count; index++) {
+            this.users.push({
+                number: (index+1),
+                name: null,
+            });
+        }
+    }
+
     ngOnInit() {
+        this.setupUsers()
         this.connection = this.reactionService.getReactions().subscribe(reaction => {
             this.createNewReaction(reaction);
             console.log(reaction);
