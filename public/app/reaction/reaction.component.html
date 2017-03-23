@@ -20,3 +20,13 @@
         </td>
     </tr>
 </table>
+<table *ngIf="disqualified.length > 0" class="table">
+    <tr>
+        <th>DISQUALIFIED</th>
+    </tr>
+    <tr *ngFor="let user of disqualified; let i = index" [attr.data-index]="i" class="danger">
+        <td>
+            {{user.id}}
+        </td>
+    </tr>
+</table>
