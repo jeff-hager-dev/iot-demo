@@ -15,19 +15,13 @@ export class ColorComponent implements OnInit, OnDestroy {
     constructor(private colorService: ColorService) {}
 
     setColor() {
-        this.colorService.setColor(1, '#332211');
+        this.colorService.setColor(1, '332211');
     }
 
 
     ngOnInit() {
-        /*
-        this.connection = this.colorService.getColors().subscribe(color => {
-            this.colors.push(color);
-            console.log(color);
-        })*/
     }
 
     ngOnDestroy() {
-        //this.connection.unsubscribe();
     }
 }

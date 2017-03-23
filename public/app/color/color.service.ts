@@ -1,15 +1,24 @@
-//import { Http } from '@angular/http';
+import { Injectable } from '@angular/core';
+import { Http, Response, Headers, RequestOptions  } from '@angular/http';
+import { Observable } from 'rxjs/Rx';
 
+@Injectable()
 export class ColorService {
-    private url = 'http://localhost:3005/1/#CCCCCC';
+    private baseUrl = 'http://localhost:3005/api/color';
 
-    constructor() {}
+    constructor(private http: Http) {}
 
     setColor(number: any, color: any) {
-        alert('color service called');
-        //this.http.get(this.url)
-        //.then(function(response: any) {
-        //    alert('response was called!');
-        //})
+        let url = this.baseUrl + '/' + number + '/%23' + color;
+        let headers = new Headers({ 'content-type': 'application/json', 'accept': 'application/json' });
+        let options = new RequestOptions({ headers: headers });
+
+        console.log(url);
+        console.log(number + " " + color);
+
+        this.http.get(url, options)
+        .map((res:Response) => res.json())
+        .catch((error: any) => Observable.throw(error.json().error || 'Server error'))
+        .subscribe();
     }
 }

@@ -18,17 +18,11 @@ var ColorComponent = (function () {
         this.colors = [];
     }
     ColorComponent.prototype.setColor = function () {
-        this.colorService.setColor(1, '#332211');
+        this.colorService.setColor(1, '332211');
     };
     ColorComponent.prototype.ngOnInit = function () {
-        /*
-        this.connection = this.colorService.getColors().subscribe(color => {
-            this.colors.push(color);
-            console.log(color);
-        })*/
     };
     ColorComponent.prototype.ngOnDestroy = function () {
-        //this.connection.unsubscribe();
     };
     ColorComponent = __decorate([
         core_1.Component({
