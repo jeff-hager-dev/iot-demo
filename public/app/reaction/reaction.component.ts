@@ -48,7 +48,7 @@ export class ReactionComponent implements OnInit, OnDestroy {
         let then = moment(this.startTime);
         let diff = now.diff(then);
         let d = moment.duration(diff);
-        let s = Math.floor(d.asHours()) + moment.utc(diff).format(":mm:ss");
+        let s = Math.floor(d.asHours()) + moment.utc(diff).format(":mm:ss.SSS");
         let newReaction = {
             id: reaction.number,
             name: reaction.number,

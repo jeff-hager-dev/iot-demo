@@ -46,7 +46,7 @@ var ReactionComponent = (function () {
         var then = moment(this.startTime);
         var diff = now.diff(then);
         var d = moment.duration(diff);
-        var s = Math.floor(d.asHours()) + moment.utc(diff).format(":mm:ss");
+        var s = Math.floor(d.asHours()) + moment.utc(diff).format(":mm:ss.SSS");
         var newReaction = {
             id: reaction.number,
             name: reaction.number,
