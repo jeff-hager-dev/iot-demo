@@ -20,8 +20,6 @@ var ColorService = (function () {
         var url = this.baseUrl + '/' + number + '/%23' + color;
         var headers = new http_1.Headers({ 'content-type': 'application/json', 'accept': 'application/json' });
         var options = new http_1.RequestOptions({ headers: headers });
-        console.log(url);
-        console.log(number + " " + color);
         this.http.get(url, options)
             .map(function (res) { return res.json(); })
             .catch(function (error) { return Rx_1.Observable.throw(error.json().error || 'Server error'); })

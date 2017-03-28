@@ -26,6 +26,7 @@ var ColorComponent = (function () {
         this.count = 20;
         this.animateCount = 0;
         this.animateColors = ['#ff0000', '#ff7f00', '#FFFF00', '#00ff00', '#00ffff', '#0000ff', '#8B00ff', '#8B00ff', '#0000ff', '#00ffff', '#00ff00', '#FFFF00', '#ff7f00', '#ff0000'];
+        this.currentAnimateColor = -1;
     }
     ColorComponent.prototype.setColor = function (color, user) {
         this.colorService.setColor(user, color.slice(1));
@@ -37,29 +38,33 @@ var ColorComponent = (function () {
             _this.colorService.setColor(userColor.number, userColor.color.slice(1));
         });
     };
-    ColorComponent.prototype.animate = function () {
+    ColorComponent.prototype.startAnimation = function () {
         var _this = this;
         console.log('click worked!');
         this.animateCount = 0;
         var timer = TimerObservable_1.TimerObservable.create(200, 300);
         this.subscription = timer.subscribe(function (t) {
-            console.log('tick: ' + _this.animateCount);
-            var index = _this.colors.findIndex(function (c) { return c.number == 1; });
-            if (index > -1) {
-                _this.colors[index].color = _this.animateColors[_this.animateCount];
+            if (_this.animateCount >= _this.count * _this.animateColors.length) {
+                return _this.subscription.unsubscribe();
             }
-            else {
-                _this.colors.push({
-                    number: 1,
-                    color: _this.animateColors[_this.animateCount]
-                });
+            var currentBlockNumber = (t % _this.count) + 1;
+            var blockIndex = _this.colors.findIndex(function (c) { return c.number == currentBlockNumber; });
+            if (blockIndex == -1) {
+                return;
             }
-            _this.colorService.setColor(1, _this.animateColors[_this.animateCount]);
+            if (currentBlockNumber == 1) {
+                _this.currentAnimateColor += 1;
+            }
+            var currentColor = _this.animateColors[_this.currentAnimateColor];
+            _this.colors[blockIndex].color = currentColor;
+            _this.colorService.setColor(blockIndex, currentColor);
             _this.animateCount++;
-            if (_this.animateCount > 14) {
-                _this.subscription.unsubscribe();
-            }
         });
+    };
+    ColorComponent.prototype.stopAnimation = function () {
+        if (this.subscription) {
+            this.subscription.unsubscribe();
+        }
     };
     ColorComponent.prototype.setupColors = function () {
         for (var index = 0; index < this.count; index++) {

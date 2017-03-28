@@ -21,6 +21,7 @@ export class ColorComponent implements OnInit, OnDestroy {
     count: number = 20;
     animateCount: number = 0;
     animateColors: string[] = ['#ff0000', '#ff7f00', '#FFFF00', '#00ff00', '#00ffff', '#0000ff', '#8B00ff', '#8B00ff', '#0000ff', '#00ffff', '#00ff00', '#FFFF00', '#ff7f00', '#ff0000'];
+    currentAnimateColor: number = -1;
     subscription: Subscription;
 
     constructor(private colorService: ColorService) {
@@ -37,25 +38,31 @@ export class ColorComponent implements OnInit, OnDestroy {
         });
     }
 
-    animate() {
+    startAnimation() {
         console.log('click worked!');
         this.animateCount = 0;
         let timer = TimerObservable.create(200, 300);
         this.subscription = timer.subscribe(t => {
-            console.log('tick: ' + this.animateCount);
-            let index = this.colors.findIndex(c => c.number == 1)
-            if (index > -1) { 
-                this.colors[index].color = this.animateColors[this.animateCount];
-            } else {
-                this.colors.push({
-                    number: 1,
-                    color: this.animateColors[this.animateCount]
-                });
-            }
-            this.colorService.setColor(1, this.animateColors[this.animateCount]);
+            if (this.animateCount >= this.count*this.animateColors.length) { return this.subscription.unsubscribe(); }
+            
+
+            let currentBlockNumber = (t%this.count)+1;
+            let blockIndex = this.colors.findIndex(c => c.number == currentBlockNumber);
+            if (blockIndex == -1) { return; } 
+
+            if(currentBlockNumber == 1){ this.currentAnimateColor += 1; }
+            let currentColor = this.animateColors[this.currentAnimateColor];
+            this.colors[blockIndex].color = currentColor;
+            this.colorService.setColor(blockIndex, currentColor);
+            
             this.animateCount++;
-            if (this.animateCount > 14) { this.subscription.unsubscribe(); }
         });
+    }
+
+    stopAnimation() {
+        if(this.subscription){
+            this.subscription.unsubscribe();
+        }
     }
 
     setupColors() {

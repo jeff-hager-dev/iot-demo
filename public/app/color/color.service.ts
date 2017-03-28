@@ -13,9 +13,6 @@ export class ColorService {
         let headers = new Headers({ 'content-type': 'application/json', 'accept': 'application/json' });
         let options = new RequestOptions({ headers: headers });
 
-        console.log(url);
-        console.log(number + " " + color);
-
         this.http.get(url, options)
         .map((res:Response) => res.json())
         .catch((error: any) => Observable.throw(error.json().error || 'Server error'))
