@@ -2,7 +2,9 @@
 <div class="text-center"><button [(colorPicker)]="color"
              [style.background-color]="color"
              (colorPickerChange)="setAllColors(color)"
-             class="btn btn-default">Set All Users</button></div>
+             class="btn btn-default">Set All Users</button>
+             <button (click)="animate()" class="btn">Animate</button>
+</div>
 <div class="text-center">
     <span *ngFor="let user of colors">
         <button [(colorPicker)]="user.color"
