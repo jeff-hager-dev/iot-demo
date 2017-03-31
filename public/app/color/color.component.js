@@ -40,7 +40,6 @@ var ColorComponent = (function () {
     };
     ColorComponent.prototype.startAnimation = function () {
         var _this = this;
-        console.log('click worked!');
         this.animateCount = 0;
         var timer = TimerObservable_1.TimerObservable.create(200, 300);
         this.subscription = timer.subscribe(function (t) {

@@ -39,7 +39,6 @@ export class ColorComponent implements OnInit, OnDestroy {
     }
 
     startAnimation() {
-        console.log('click worked!');
         this.animateCount = 0;
         let timer = TimerObservable.create(200, 300);
         this.subscription = timer.subscribe(t => {
