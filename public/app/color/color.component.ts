@@ -17,10 +17,10 @@ export class Color {
 })
 export class ColorComponent implements OnInit, OnDestroy {
     colors: Color[] = [];
-    color: string = '#fff';
+    color: string = 'fff';
     count: number = 20;
     animateCount: number = 0;
-    animateColors: string[] = ['#ff0000', '#ff7f00', '#FFFF00', '#00ff00', '#00ffff', '#0000ff', '#8B00ff', '#8B00ff', '#0000ff', '#00ffff', '#00ff00', '#FFFF00', '#ff7f00', '#ff0000'];
+    animateColors: string[] = ['ff0000', 'ff7f00', 'FFFF00', '00ff00', '00ffff', '0000ff', '8B00ff', '8B00ff', '0000ff', '00ffff', '00ff00', 'FFFF00', 'ff7f00', 'ff0000'];
     currentAnimateColor: number = -1;
     subscription: Subscription;
 
@@ -43,7 +43,9 @@ export class ColorComponent implements OnInit, OnDestroy {
         this.animateCount = 0;
         let timer = TimerObservable.create(200, 300);
         this.subscription = timer.subscribe(t => {
-            if (this.animateCount >= this.count*this.animateColors.length) { return this.subscription.unsubscribe(); }
+            if (this.animateCount >= this.count*this.animateColors.length) { 
+                return this.subscription.unsubscribe(); 
+            }
             
 
             let currentBlockNumber = (t%this.count)+1;
@@ -52,7 +54,7 @@ export class ColorComponent implements OnInit, OnDestroy {
 
             if(currentBlockNumber == 1){ this.currentAnimateColor += 1; }
             let currentColor = this.animateColors[this.currentAnimateColor];
-            this.colors[blockIndex].color = currentColor;
+            this.colors[blockIndex].color = '#'+currentColor;
             this.colorService.setColor(blockIndex, currentColor);
             
             this.animateCount++;
@@ -69,7 +71,7 @@ export class ColorComponent implements OnInit, OnDestroy {
         for(let index = 0; index < this.count; index++) {
             this.colors.push({
                 number: (index+1),
-                color: '#fff'
+                color: '#'+this.color
             });
         }
     }

@@ -22,10 +22,10 @@ var ColorComponent = (function () {
     function ColorComponent(colorService) {
         this.colorService = colorService;
         this.colors = [];
-        this.color = '#fff';
+        this.color = 'fff';
         this.count = 20;
         this.animateCount = 0;
-        this.animateColors = ['#ff0000', '#ff7f00', '#FFFF00', '#00ff00', '#00ffff', '#0000ff', '#8B00ff', '#8B00ff', '#0000ff', '#00ffff', '#00ff00', '#FFFF00', '#ff7f00', '#ff0000'];
+        this.animateColors = ['ff0000', 'ff7f00', 'FFFF00', '00ff00', '00ffff', '0000ff', '8B00ff', '8B00ff', '0000ff', '00ffff', '00ff00', 'FFFF00', 'ff7f00', 'ff0000'];
         this.currentAnimateColor = -1;
     }
     ColorComponent.prototype.setColor = function (color, user) {
@@ -56,7 +56,7 @@ var ColorComponent = (function () {
                 _this.currentAnimateColor += 1;
             }
             var currentColor = _this.animateColors[_this.currentAnimateColor];
-            _this.colors[blockIndex].color = currentColor;
+            _this.colors[blockIndex].color = '#' + currentColor;
             _this.colorService.setColor(blockIndex, currentColor);
             _this.animateCount++;
         });
@@ -70,7 +70,7 @@ var ColorComponent = (function () {
         for (var index = 0; index < this.count; index++) {
             this.colors.push({
                 number: (index + 1),
-                color: '#fff'
+                color: '#' + this.color
             });
         }
     };
