@@ -16,6 +16,10 @@ var SeatComponent = (function () {
         core_1.Input(), 
         __metadata('design:type', Object)
     ], SeatComponent.prototype, "user", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', Boolean)
+    ], SeatComponent.prototype, "state", void 0);
     SeatComponent = __decorate([
         core_1.Component({
             selector: 'seat',

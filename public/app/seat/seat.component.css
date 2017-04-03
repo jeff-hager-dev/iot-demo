@@ -38,3 +38,18 @@ span.user-name {
     text-align: center;
     width: 100%;
 }
+
+img.up {
+    width: 75px;
+    margin-top: 30px;
+}
+
+img.down {
+    width: 75px;
+    margin-top: 47px;
+}
+
+img.empty2 {
+    width: 75px;
+    margin-top: 47px;
+}

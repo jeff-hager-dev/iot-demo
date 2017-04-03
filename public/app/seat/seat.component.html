@@ -1,9 +1,12 @@
 <span class="chair">
     <span class="user-name">{{user.name}}</span>
-    <img class="empty" *ngIf="!user.name" src="../images/Empty.png">
-    <img class="standing-m"  *ngIf="user.name && user.isOn && user.gender == 'M'" src="../images/Standing_M.png" >
-    <img class="sitting-m"  *ngIf="user.name && !user.isOn && user.gender == 'M'" src="../images/Sitting_M.png" >
-    <img class="standing-f"  *ngIf="user.name && user.isOn && user.gender == 'F'" src="../images/Standing_F.png" >
-    <img class="sitting-f"  *ngIf="user.name && !user.isOn && user.gender == 'F'" src="../images/Sitting_F.png" >
+    <img class="empty" *ngIf="!user.name && !state" src="../images/Empty.png">
+    <img class="standing-m"  *ngIf="user.name && user.isOn && user.gender == 'M' && !state" src="../images/Standing_M.png" >
+    <img class="sitting-m"  *ngIf="user.name && !user.isOn && user.gender == 'M' && !state" src="../images/Sitting_M.png" >
+    <img class="standing-f"  *ngIf="user.name && user.isOn && user.gender == 'F' && !state" src="../images/Standing_F.png" >
+    <img class="sitting-f"  *ngIf="user.name && !user.isOn && user.gender == 'F' && !state" src="../images/Sitting_F.png" >
+    <img class="empty2" *ngIf="!user.name && state" src="../images/empty-2.png">
+    <img class="up" *ngIf="user.name && user.isOn && state" src="../images/up.png" >
+    <img class="down" *ngIf="user.name && !user.isOn && state" src="../images/down.png" >
     <span class="seat-number">{{user.number}}</span>
 </span>

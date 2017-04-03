@@ -7,4 +7,5 @@ import { Component, Input } from '@angular/core';
 })
 export class SeatComponent {
     @Input() user: any;
+    @Input() state: boolean;
 }

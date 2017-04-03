@@ -17,6 +17,9 @@ var StadiumSeatsComponent = (function () {
         this.checkinService = checkinService;
         this.users = [];
         this.count = 20;
+        this.viewState = false;
+        this.viewStateCount = 0;
+        this.viewStateScore = 0;
     }
     StadiumSeatsComponent.prototype.ngOnInit = function () {
         this.setupChairs();
@@ -77,6 +80,19 @@ var StadiumSeatsComponent = (function () {
                 }
             }
         });
+    };
+    StadiumSeatsComponent.prototype.viewStateChange = function (i, isOn) {
+        if (i == 5) {
+            this.viewStateCount++;
+            if (this.viewStateCount >= 4) {
+                this.viewState = true;
+            }
+        }
+        if (this.viewState) {
+            if (isOn) {
+                this.viewStateScore++;
+            }
+        }
     };
     StadiumSeatsComponent = __decorate([
         core_1.Component({

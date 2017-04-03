@@ -13,6 +13,9 @@ export class StadiumSeatsComponent implements OnInit, OnDestroy {
     standConnection: any;
     checkinConnection: any;
     count: number = 20;
+    viewState: boolean = false;
+    viewStateCount: number = 0;
+    viewStateScore: number = 0;
 
     constructor(private stadiumSeatsService:StadiumSeatsService, 
                 private checkinService: CheckinService) {}
@@ -72,5 +75,19 @@ export class StadiumSeatsComponent implements OnInit, OnDestroy {
                 }
             }
         });
+    }
+
+    viewStateChange(i: number, isOn: boolean) {
+        if (i == 5) {
+            this.viewStateCount++;
+            if (this.viewStateCount >= 4) {
+                this.viewState=true;
+            }
+        }
+        if (this.viewState) {
+            if (isOn) {
+                this.viewStateScore++;
+            }
+        }
     }
 }
